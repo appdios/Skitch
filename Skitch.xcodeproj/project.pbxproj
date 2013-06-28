@@ -1,0 +1,361 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270D33C9177E2CB0009A6353 /* YMShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D33C8177E2CB0009A6353 /* YMShapeView.m */; };
+		270D33CC177E2D77009A6353 /* YMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D33CB177E2D77009A6353 /* YMMenuView.m */; };
+		270D33CF177E4816009A6353 /* MERKING.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270D33CD177E4816009A6353 /* MERKING.ttf */; };
+		270D33D0177E4816009A6353 /* MERKINS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270D33CE177E4816009A6353 /* MERKINS.ttf */; };
+		270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */; };
+		27EBCAF3177A0F5F00785B84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF2177A0F5F00785B84 /* UIKit.framework */; };
+		27EBCAF5177A0F5F00785B84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF4177A0F5F00785B84 /* Foundation.framework */; };
+		27EBCAF7177A0F5F00785B84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF6177A0F5F00785B84 /* CoreGraphics.framework */; };
+		27EBCAFD177A0F5F00785B84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCAFB177A0F5F00785B84 /* InfoPlist.strings */; };
+		27EBCAFF177A0F5F00785B84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCAFE177A0F5F00785B84 /* main.m */; };
+		27EBCB03177A0F5F00785B84 /* YMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB02177A0F5F00785B84 /* YMAppDelegate.m */; };
+		27EBCB05177A0F5F00785B84 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB04177A0F5F00785B84 /* Default.png */; };
+		27EBCB07177A0F5F00785B84 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB06177A0F5F00785B84 /* Default@2x.png */; };
+		27EBCB09177A0F5F00785B84 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB08177A0F5F00785B84 /* Default-568h@2x.png */; };
+		27EBCB12177A0FB200785B84 /* YMSketchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB10177A0FB200785B84 /* YMSketchViewController.m */; };
+		27EBCB13177A0FB200785B84 /* YMSketchViewController-iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB11177A0FB200785B84 /* YMSketchViewController-iphone.xib */; };
+		27EBCB15177A0FD500785B84 /* YMSketchViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB14177A0FD500785B84 /* YMSketchViewController-ipad.xib */; };
+		27EBCB18177A10B100785B84 /* YMSketchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB17177A10B100785B84 /* YMSketchView.m */; };
+		27EBCB1B177A116B00785B84 /* YMShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB1A177A116B00785B84 /* YMShape.m */; };
+		27EBCB22177A2EA900785B84 /* YMProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB21177A2EA900785B84 /* YMProperty.m */; };
+		27EBCB27177BAC7600785B84 /* YMColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EBCB26177BAC7600785B84 /* YMColorView.m */; };
+		27EBCB29177BAD9600785B84 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCB28177BAD9600785B84 /* QuartzCore.framework */; };
+		27EBCB2B177BBA7800785B84 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EBCB2A177BBA7800785B84 /* 11.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		270D33C7177E2CB0009A6353 /* YMShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMShapeView.h; sourceTree = "<group>"; };
+		270D33C8177E2CB0009A6353 /* YMShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMShapeView.m; sourceTree = "<group>"; };
+		270D33CA177E2D77009A6353 /* YMMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMMenuView.h; sourceTree = "<group>"; };
+		270D33CB177E2D77009A6353 /* YMMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMMenuView.m; sourceTree = "<group>"; };
+		270D33CD177E4816009A6353 /* MERKING.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MERKING.ttf; sourceTree = "<group>"; };
+		270D33CE177E4816009A6353 /* MERKINS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MERKINS.ttf; sourceTree = "<group>"; };
+		270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Strenuous3D.ttf; sourceTree = "<group>"; };
+		27EBCAEF177A0F5F00785B84 /* Skitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EBCAF2177A0F5F00785B84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27EBCAF4177A0F5F00785B84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27EBCAF6177A0F5F00785B84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		27EBCAFA177A0F5F00785B84 /* Skitch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Skitch-Info.plist"; sourceTree = "<group>"; };
+		27EBCAFC177A0F5F00785B84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		27EBCAFE177A0F5F00785B84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27EBCB00177A0F5F00785B84 /* Skitch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Skitch-Prefix.pch"; sourceTree = "<group>"; };
+		27EBCB01177A0F5F00785B84 /* YMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMAppDelegate.h; sourceTree = "<group>"; };
+		27EBCB02177A0F5F00785B84 /* YMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YMAppDelegate.m; sourceTree = "<group>"; };
+		27EBCB04177A0F5F00785B84 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		27EBCB06177A0F5F00785B84 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		27EBCB08177A0F5F00785B84 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		27EBCB0F177A0FB200785B84 /* YMSketchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSketchViewController.h; sourceTree = "<group>"; };
+		27EBCB10177A0FB200785B84 /* YMSketchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSketchViewController.m; sourceTree = "<group>"; };
+		27EBCB11177A0FB200785B84 /* YMSketchViewController-iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YMSketchViewController-iphone.xib"; sourceTree = "<group>"; };
+		27EBCB14177A0FD500785B84 /* YMSketchViewController-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YMSketchViewController-ipad.xib"; sourceTree = "<group>"; };
+		27EBCB16177A10B100785B84 /* YMSketchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSketchView.h; sourceTree = "<group>"; };
+		27EBCB17177A10B100785B84 /* YMSketchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSketchView.m; sourceTree = "<group>"; };
+		27EBCB19177A116B00785B84 /* YMShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMShape.h; sourceTree = "<group>"; };
+		27EBCB1A177A116B00785B84 /* YMShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMShape.m; sourceTree = "<group>"; };
+		27EBCB20177A2EA900785B84 /* YMProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMProperty.h; sourceTree = "<group>"; };
+		27EBCB21177A2EA900785B84 /* YMProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMProperty.m; sourceTree = "<group>"; };
+		27EBCB25177BAC7600785B84 /* YMColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMColorView.h; sourceTree = "<group>"; };
+		27EBCB26177BAC7600785B84 /* YMColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMColorView.m; sourceTree = "<group>"; };
+		27EBCB28177BAD9600785B84 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		27EBCB2A177BBA7800785B84 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27EBCAEC177A0F5F00785B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EBCB29177BAD9600785B84 /* QuartzCore.framework in Frameworks */,
+				27EBCAF3177A0F5F00785B84 /* UIKit.framework in Frameworks */,
+				27EBCAF5177A0F5F00785B84 /* Foundation.framework in Frameworks */,
+				27EBCAF7177A0F5F00785B84 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27EBCAE6177A0F5F00785B84 = {
+			isa = PBXGroup;
+			children = (
+				27EBCAF8177A0F5F00785B84 /* Skitch */,
+				27EBCAF1177A0F5F00785B84 /* Frameworks */,
+				27EBCAF0177A0F5F00785B84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27EBCAF0177A0F5F00785B84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27EBCAEF177A0F5F00785B84 /* Skitch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27EBCAF1177A0F5F00785B84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27EBCB28177BAD9600785B84 /* QuartzCore.framework */,
+				27EBCAF2177A0F5F00785B84 /* UIKit.framework */,
+				27EBCAF4177A0F5F00785B84 /* Foundation.framework */,
+				27EBCAF6177A0F5F00785B84 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27EBCAF8177A0F5F00785B84 /* Skitch */ = {
+			isa = PBXGroup;
+			children = (
+				27EBCB01177A0F5F00785B84 /* YMAppDelegate.h */,
+				27EBCB02177A0F5F00785B84 /* YMAppDelegate.m */,
+				27EBCB0F177A0FB200785B84 /* YMSketchViewController.h */,
+				27EBCB10177A0FB200785B84 /* YMSketchViewController.m */,
+				27EBCB11177A0FB200785B84 /* YMSketchViewController-iphone.xib */,
+				27EBCB14177A0FD500785B84 /* YMSketchViewController-ipad.xib */,
+				27EBCB16177A10B100785B84 /* YMSketchView.h */,
+				27EBCB17177A10B100785B84 /* YMSketchView.m */,
+				27EBCB25177BAC7600785B84 /* YMColorView.h */,
+				27EBCB26177BAC7600785B84 /* YMColorView.m */,
+				270D33C7177E2CB0009A6353 /* YMShapeView.h */,
+				270D33C8177E2CB0009A6353 /* YMShapeView.m */,
+				270D33CA177E2D77009A6353 /* YMMenuView.h */,
+				270D33CB177E2D77009A6353 /* YMMenuView.m */,
+				27EBCB19177A116B00785B84 /* YMShape.h */,
+				27EBCB1A177A116B00785B84 /* YMShape.m */,
+				27EBCB20177A2EA900785B84 /* YMProperty.h */,
+				27EBCB21177A2EA900785B84 /* YMProperty.m */,
+				27EBCAF9177A0F5F00785B84 /* Supporting Files */,
+			);
+			path = Skitch;
+			sourceTree = "<group>";
+		};
+		27EBCAF9177A0F5F00785B84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */,
+				270D33CD177E4816009A6353 /* MERKING.ttf */,
+				270D33CE177E4816009A6353 /* MERKINS.ttf */,
+				27EBCB2A177BBA7800785B84 /* 11.png */,
+				27EBCAFA177A0F5F00785B84 /* Skitch-Info.plist */,
+				27EBCAFB177A0F5F00785B84 /* InfoPlist.strings */,
+				27EBCAFE177A0F5F00785B84 /* main.m */,
+				27EBCB00177A0F5F00785B84 /* Skitch-Prefix.pch */,
+				27EBCB04177A0F5F00785B84 /* Default.png */,
+				27EBCB06177A0F5F00785B84 /* Default@2x.png */,
+				27EBCB08177A0F5F00785B84 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27EBCAEE177A0F5F00785B84 /* Skitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27EBCB0C177A0F5F00785B84 /* Build configuration list for PBXNativeTarget "Skitch" */;
+			buildPhases = (
+				27EBCAEB177A0F5F00785B84 /* Sources */,
+				27EBCAEC177A0F5F00785B84 /* Frameworks */,
+				27EBCAED177A0F5F00785B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Skitch;
+			productName = Skitch;
+			productReference = 27EBCAEF177A0F5F00785B84 /* Skitch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27EBCAE7177A0F5F00785B84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = YM;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Yammer Inc.";
+			};
+			buildConfigurationList = 27EBCAEA177A0F5F00785B84 /* Build configuration list for PBXProject "Skitch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27EBCAE6177A0F5F00785B84;
+			productRefGroup = 27EBCAF0177A0F5F00785B84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27EBCAEE177A0F5F00785B84 /* Skitch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27EBCAED177A0F5F00785B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EBCAFD177A0F5F00785B84 /* InfoPlist.strings in Resources */,
+				27EBCB05177A0F5F00785B84 /* Default.png in Resources */,
+				27EBCB07177A0F5F00785B84 /* Default@2x.png in Resources */,
+				27EBCB09177A0F5F00785B84 /* Default-568h@2x.png in Resources */,
+				27EBCB13177A0FB200785B84 /* YMSketchViewController-iphone.xib in Resources */,
+				27EBCB15177A0FD500785B84 /* YMSketchViewController-ipad.xib in Resources */,
+				27EBCB2B177BBA7800785B84 /* 11.png in Resources */,
+				270D33CF177E4816009A6353 /* MERKING.ttf in Resources */,
+				270D33D0177E4816009A6353 /* MERKINS.ttf in Resources */,
+				270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27EBCAEB177A0F5F00785B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EBCAFF177A0F5F00785B84 /* main.m in Sources */,
+				27EBCB03177A0F5F00785B84 /* YMAppDelegate.m in Sources */,
+				27EBCB12177A0FB200785B84 /* YMSketchViewController.m in Sources */,
+				27EBCB18177A10B100785B84 /* YMSketchView.m in Sources */,
+				27EBCB1B177A116B00785B84 /* YMShape.m in Sources */,
+				27EBCB22177A2EA900785B84 /* YMProperty.m in Sources */,
+				27EBCB27177BAC7600785B84 /* YMColorView.m in Sources */,
+				270D33C9177E2CB0009A6353 /* YMShapeView.m in Sources */,
+				270D33CC177E2D77009A6353 /* YMMenuView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27EBCAFB177A0F5F00785B84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27EBCAFC177A0F5F00785B84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		27EBCB0A177A0F5F00785B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27EBCB0B177A0F5F00785B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27EBCB0D177A0F5F00785B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Skitch/Skitch-Prefix.pch";
+				INFOPLIST_FILE = "Skitch/Skitch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		27EBCB0E177A0F5F00785B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Skitch/Skitch-Prefix.pch";
+				INFOPLIST_FILE = "Skitch/Skitch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27EBCAEA177A0F5F00785B84 /* Build configuration list for PBXProject "Skitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EBCB0A177A0F5F00785B84 /* Debug */,
+				27EBCB0B177A0F5F00785B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27EBCB0C177A0F5F00785B84 /* Build configuration list for PBXNativeTarget "Skitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EBCB0D177A0F5F00785B84 /* Debug */,
+				27EBCB0E177A0F5F00785B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27EBCAE7177A0F5F00785B84 /* Project object */;
+}
