@@ -10,6 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "YMProperty.h"
 
+@interface YMColorView()
+
+@property (nonatomic, strong) UIButton *currentSelectedButton;
+@end
 @implementation YMColorView
 
 - (id)initWithFrame:(CGRect)frame
@@ -23,58 +27,75 @@
 
 - (void)addColorButtons
 {
+    CGSize buttonSize = CGSizeMake(40, 40);
     for (int i=0; i<10; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5, 10 + 54*i, 44, 44)];
-        button.layer.cornerRadius = 22;
-        button.layer.borderWidth = 2.0;
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10 + (buttonSize.height + 10)*i, buttonSize.width, buttonSize.height)];
+        button.tag = i;
         [button addTarget:self action:@selector(colorChanged:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
-        
+        button.layer.borderWidth = 4.0;
+        button.layer.cornerRadius = buttonSize.width/2;
+
+        UIColor *selectedColor = [UIColor redColor];
         switch (i) {
             case 0:
-                button.backgroundColor = [UIColor redColor];
+                selectedColor = [UIColor redColor];
                 break;
             case 1:
-                button.backgroundColor = [UIColor greenColor];
+                selectedColor = [UIColor colorWithRed:0.0 green:163.0/255.0 blue:31.0/255.0 alpha:1.0];
                 break;
             case 2:
-                button.backgroundColor = [UIColor blueColor];
+                selectedColor = [UIColor colorWithRed:0.0 green:47.0/255.0 blue:161.0/255.0 alpha:1.0];
                 break;
             case 3:
-                button.backgroundColor = [UIColor blackColor];
+                selectedColor = [UIColor blackColor];
                 break;
             case 4:
-                button.backgroundColor = [UIColor whiteColor];
+                selectedColor = [UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0];
                 break;
             case 5:
-                button.backgroundColor = [UIColor darkGrayColor];
+                selectedColor = [UIColor colorWithRed:1.0 green:160.0/255.0 blue:16.0/255.0 alpha:1.0];
                 break;
             case 6:
-                button.backgroundColor = [UIColor lightGrayColor];
+                selectedColor = [UIColor colorWithRed:45.0/255.0 green:202.0/255.0 blue:244.0/255.0 alpha:1.0];
                 break;
             case 7:
-                button.backgroundColor = [UIColor yellowColor];
+                selectedColor = [UIColor magentaColor];
                 break;
             case 8:
-                button.backgroundColor = [UIColor purpleColor];
+                selectedColor = [UIColor brownColor];
                 break;
             case 9:
-                button.backgroundColor = [UIColor magentaColor];
-                break;
-            case 10:
-                button.backgroundColor = [UIColor brownColor];
+                selectedColor = [UIColor purpleColor];
                 break;
                 
             default:
                 break;
+        }
+        button.layer.borderColor = selectedColor.CGColor;
+        if (i==0) {
+            button.backgroundColor = selectedColor;
+            self.currentSelectedButton = button;
+        }
+        else{
+            button.backgroundColor = [UIColor clearColor];
         }
     }
 }
 
 - (void)colorChanged:(UIButton*)button
 {
-    [YMProperty setCurrentColor:button.backgroundColor];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kColorChanged" object:button.backgroundColor];
+    UIColor *selectedColor = [[UIColor alloc] initWithCGColor:button.layer.borderColor];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.currentSelectedButton setBackgroundColor:[UIColor clearColor]];
+        self.currentSelectedButton = button;
+        
+        [button setBackgroundColor:selectedColor];
+    }];
+    
+    
+    [YMProperty setCurrentColor:selectedColor];
 }
 
 @end

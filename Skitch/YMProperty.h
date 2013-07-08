@@ -8,11 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "YMShape.h"
+#import "YMArt.h"
 
 @interface YMProperty : NSObject
+@property (nonatomic, strong) NSMutableArray *arts;
 
++ (YMProperty *) sharedInstance;
 + (YMShapeType)currentShapeType;
 + (void)setCurrentShapeType:(YMShapeType)type;
 + (UIColor*)currentColor;
 + (void)setCurrentColor:(UIColor*)color;
+
++ (YMArt*)newArt;
++ (void)saveArt:(YMArt*)art;
 @end

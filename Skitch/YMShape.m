@@ -30,6 +30,12 @@
         case YMSHapeTypeText:
             return [YMShape textShapeInRect:rect];
             break;
+        case YMShapeTypeLine:
+            return [YMShape lineShapeFromPoint:startPoint toPoint:endPoint];
+            break;
+        case YMShapeTypeBlur:
+            return [YMShape rectangleShapeInRect:rect];
+            break;
         default:
             break;
     }
@@ -45,21 +51,21 @@
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
     shape.color = [YMProperty currentColor];
-    
+    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)rectangleShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMShapeTypeRectangle;
+    shape.type = [YMProperty currentShapeType];
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
 
     shape.color = [YMProperty currentColor];
-    
+    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
@@ -73,7 +79,7 @@
     shape.path = pathRef;
 
     shape.color = [YMProperty currentColor];
-    
+    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
@@ -114,9 +120,27 @@
     shape.path = pathRef;
     
     shape.color = [YMProperty currentColor];
-    
+    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
+
++ (YMShape*)lineShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
+{
+    YMShape *shape = [[YMShape alloc] init];
+    shape.type = YMShapeTypeLine;
+    
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(pathRef, nil, startPoint.x, startPoint.y);
+    CGPathAddLineToPoint(pathRef, nil, endPoint.x, endPoint.y);
+
+    shape.path = pathRef;
+    
+    shape.color = [YMProperty currentColor];
+    shape.transform = CGAffineTransformIdentity;
+    return shape;
+}
+
 
 + (YMShape*)roundedRectangleShapeInRect:(CGRect)rect
 {
@@ -139,40 +163,10 @@
     shape.path = pathRef;
     
     shape.color = [YMProperty currentColor];
-    
+    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
-
-
-CGFloat distanceBetween(CGPoint point1,CGPoint point2)
-{
-    CGFloat distance;
-    CGFloat temp;
-    temp=((point1.x-point2.x)*(point1.x-point2.x))+((point1.y-point2.y)*(point1.y-point2.y));
-    distance=sqrt(temp);
-    return distance;
-}
-
-CGPoint rotatePoint(CGPoint p, float angle, CGPoint centerPoint)
-{
-    float s = sin(angle);
-    float c = cos(angle);
-    
-    // translate point back to origin:
-    p.x -= centerPoint.x;
-    p.y -= centerPoint.y;
-    
-    // rotate point
-    float xnew = p.x * c - p.y * s;
-    float ynew = p.x * s + p.y * c;
-    
-    // translate point back:
-    p.x = xnew + centerPoint.x;
-    p.y = ynew + centerPoint.y;
-    
-    return p;
-}
 
 - (void)dealloc
 {

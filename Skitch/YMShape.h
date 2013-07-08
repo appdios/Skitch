@@ -14,13 +14,15 @@ typedef enum{
     YMShapeTypeRoundedRectangle,
     YMShapeTypeRectangle,
     YMSHapeTypeText,
-    YMShapeTypePolygon
+    YMShapeTypeLine,
+    YMShapeTypeBlur
 }YMShapeType;
 
 @interface YMShape : NSObject
 
 @property (nonatomic) CGPathRef path;
 @property (nonatomic) YMShapeType type;
+@property (nonatomic) CGAffineTransform transform;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSString *text;
 
@@ -29,4 +31,5 @@ typedef enum{
 + (YMShape*)circularShapeInRect:(CGRect)rect;
 + (YMShape*)arrowShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 + (YMShape*)roundedRectangleShapeInRect:(CGRect)rect;
++ (YMShape*)lineShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 @end

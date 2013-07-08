@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "YMSketchView.h"
+#import <MessageUI/MessageUI.h>
+#import "YMGalleryViewController.h"
 
-@interface YMSketchViewController : UIViewController
+@interface YMSketchViewController : UIViewController<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YMSketchViewDelegate, YMGallerydelegate>
 
 @property (nonatomic, weak) IBOutlet YMSketchView *sketchView;
-@property (nonatomic, weak) IBOutlet UIButton *menuButton;
+@property (nonatomic, weak) IBOutlet UIButton *shareButton;
+@property (nonatomic, weak) IBOutlet UIButton *addButton;
+@property (nonatomic, weak) IBOutlet UIButton *galleryButton;
+@property (nonatomic, weak) IBOutlet UIButton *undoButton;
 @end

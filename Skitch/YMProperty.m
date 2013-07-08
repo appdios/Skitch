@@ -23,7 +23,8 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[YMProperty alloc] init];
         sharedInstance.shapeType = YMShapeTypeArrow;
-        sharedInstance.color = [UIColor blackColor];
+        sharedInstance.color = [UIColor redColor];
+        sharedInstance.arts = [NSMutableArray array];
     });
     
     return sharedInstance;
@@ -52,5 +53,26 @@
     YMProperty *property = [YMProperty sharedInstance];
     property.color = color;
 }
+
++ (YMArt*)newArt{
+    YMProperty *property = [YMProperty sharedInstance];
+    YMArt *art = [[YMArt alloc] init];
+    art.tag = [property.arts count] + 1;
+    [property.arts addObject:art];
+    return art;
+}
+
++ (void)saveArt:(YMArt*)art{
+    YMProperty *property = [YMProperty sharedInstance];
+    __block NSInteger artIndex = 0;
+    [property.arts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (((YMArt*)obj).tag == art.tag) {
+            artIndex = idx;
+            *stop = YES;
+        }
+    }];
+    [property.arts replaceObjectAtIndex:artIndex withObject:art];
+}
+
 
 @end

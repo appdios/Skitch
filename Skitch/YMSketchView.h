@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YMSketchView : UIView
+@protocol YMSketchViewDelegate <NSObject>
+- (void)blurInRect:(CGRect)rect;
+- (void)touchStart;
+- (void)touchEnd;
+@end
+@interface YMSketchView : UIView<UITextViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *shapes;
+@property (nonatomic, weak) id<YMSketchViewDelegate> delegate;
+
+- (void)readyForScreenshot;
 @end
