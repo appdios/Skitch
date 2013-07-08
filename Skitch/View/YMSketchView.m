@@ -8,8 +8,6 @@
 
 #import "YMSketchView.h"
 #import "YMShape.h"
-#import "YMProperty.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface YMSketchView()
 @property (nonatomic) BOOL touchToOpenDrawer;
@@ -204,6 +202,7 @@
 
 -(void) showTextViewAtPoint:(CGPoint)point
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHideMenuNotification" object:nil];
     self.textView.text = @"";
     
     self.textViewHeight = 48;

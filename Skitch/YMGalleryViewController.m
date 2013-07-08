@@ -7,8 +7,6 @@
 //
 
 #import "YMGalleryViewController.h"
-#import "YMProperty.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface YMGalleryViewController ()
 

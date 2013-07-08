@@ -8,8 +8,6 @@
 
 #import "YMSketchViewController.h"
 #import "YMMenuView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "YMProperty.h"
 #import "YMYammerAuthorizationViewController.h"
 #import "YMGalleryViewController.h"
 #import "UIImage+Yammer.h"
@@ -133,6 +131,9 @@
 
 - (void)hideMenu{
     self.menuViewVisible = NO;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.menuView.frame = CGRectMake(-64*2, 0, 64*2, self.view.bounds.size.height);
+    }];
 }
 
 

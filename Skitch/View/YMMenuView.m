@@ -9,7 +9,6 @@
 #import "YMMenuView.h"
 #import "YMShapeView.h"
 #import "YMColorView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface YMMenuView()
 

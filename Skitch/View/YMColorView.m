@@ -7,8 +7,6 @@
 //
 
 #import "YMColorView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "YMProperty.h"
 
 @interface YMColorView()
 
