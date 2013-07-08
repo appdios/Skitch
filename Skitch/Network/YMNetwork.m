@@ -66,4 +66,47 @@ static const NSString *kYammerBaseURL = @"https://www.yammer.com/api/v1/";
     }];
 }
 
++ (void)uploadImage:(UIImage*)image toGroup:(NSString*)groupId delegate:(id<YMNetworkDelegate>)delegate
+{
+    NSData *uploadData = UIImagePNGRepresentation(image);
+    
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://files.yammer.com/v2/files?group_id=%@",groupId]]];
+    NSMutableData *postData = [NSMutableData new];
+    
+    NSString *boundary = @"0YKhTmLbOuNdArY";
+    [postData appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[@"Content-Disposition: form-data; name=\"userfile\"; filename=\"file.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+
+
+    [postData appendData:uploadData];
+    
+    [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"kAccessToken"];
+
+    [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@",accessToken] forHTTPHeaderField:@"Authorization"];
+    [urlRequest setValue:@"Accept" forHTTPHeaderField:@"*/*"];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+//    [urlRequest setValue:[NSString stringWithFormat:@"%d",[postData length]] forHTTPHeaderField:@"Content-Length"];
+//    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    [urlRequest setHTTPBody:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            NSLog(@"%@",[connectionError description]);
+        }
+        else{
+            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",str);
+            id responseObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSLog(@"%@",responseObj);
+        }
+    }];
+}
+
 @end

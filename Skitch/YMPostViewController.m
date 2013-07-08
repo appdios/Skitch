@@ -55,7 +55,7 @@
     self.textView.delegate = self;
     [self.textView setInputAccessoryView:self.keyboardDismissButton];
     
-    self.attachmentView = [[YMImageAttachmentView alloc] initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width - 20, 80)];
+    self.attachmentView = [[YMImageAttachmentView alloc] initWithFrame:CGRectMake(20, 0, self.view.bounds.size.width - 40, 80)];
     [self.attachmentView insertThumbnails];
 }
 
@@ -189,16 +189,25 @@
 }
 
 - (void)postMessage{
-    [SVProgressHUD show];
-    
-    id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
-    NSString *groupId = [group objectForKey:@"id"];
-    if (groupId==nil) {
-        groupId = @"0";
+    for (YMArt *art in [[YMProperty sharedInstance] selectedArts]) {
+        id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
+        NSString *groupId = [group objectForKey:@"id"];
+        if (groupId==nil) {
+            groupId = @"0";
+        }
+        [YMNetwork uploadImage:art.image toGroup:groupId delegate:self];
     }
-    NSString *postBody = self.textView.text;
     
-    [YMNetwork postMessage:postBody toGroup:groupId forDelegate:self];
+//    [SVProgressHUD show];
+//    
+//    id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
+//    NSString *groupId = [group objectForKey:@"id"];
+//    if (groupId==nil) {
+//        groupId = @"0";
+//    }
+//    NSString *postBody = self.textView.text;
+//    
+//    [YMNetwork postMessage:postBody toGroup:groupId forDelegate:self];
 }
 
 #pragma mark - YMNetworkDelegate Methods
