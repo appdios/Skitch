@@ -66,7 +66,7 @@
 
 - (void)shapeChanged:(UIButton*)button
 {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.1 animations:^{
         self.currentSelectedButton.backgroundColor = [UIColor clearColor];
         button.backgroundColor = [UIColor lightGrayColor];
     }];

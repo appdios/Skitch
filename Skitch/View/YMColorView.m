@@ -26,7 +26,7 @@
 - (void)addColorButtons
 {
     CGSize buttonSize = CGSizeMake(40, 40);
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<9; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10 + (buttonSize.height + 10)*i, buttonSize.width, buttonSize.height)];
         button.tag = i;
         [button addTarget:self action:@selector(colorChanged:) forControlEvents:UIControlEventTouchUpInside];
@@ -85,7 +85,7 @@
 {
     UIColor *selectedColor = [[UIColor alloc] initWithCGColor:button.layer.borderColor];
 
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.1 animations:^{
         [self.currentSelectedButton setBackgroundColor:[UIColor clearColor]];
         self.currentSelectedButton = button;
         
