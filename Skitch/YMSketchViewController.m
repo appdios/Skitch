@@ -119,7 +119,7 @@
         [self addNew];
     }
     else{
-        YMArt *art = [[[YMProperty sharedInstance] arts] objectAtIndex:index];
+        YMArt *art = [[[YMProperty sharedInstance] arts] objectAtIndex:index - 1];
         self.currentArt = art;
         self.backView.image = art.image;
         [self.sketchView.shapes removeAllObjects];

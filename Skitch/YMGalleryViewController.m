@@ -48,7 +48,12 @@
     cell.backgroundColor = [UIColor whiteColor];
 
     if (indexPath.row == 0) {
-        cell.backgroundColor = [UIColor darkGrayColor];
+        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.layer.borderWidth = 1.0;
+        cell.layer.borderColor = [UIColor grayColor].CGColor;
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"addbutton"]];
+        imageView.contentMode = UIViewContentModeCenter;
+        cell.backgroundView = imageView;
     }
     else{
         YMArt *art = [[[YMProperty sharedInstance] arts] objectAtIndex:indexPath.row - 1];
