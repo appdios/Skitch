@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "YMGroupViewController.h"
+#import "YMNetwork.h"
 
-@interface YMPostViewController : UITableViewController<YMGroupSelectionDelegate, UITextViewDelegate>
+@interface YMPostViewController : UITableViewController<YMGroupSelectionDelegate, UITextViewDelegate, YMNetworkDelegate>
 
 @end

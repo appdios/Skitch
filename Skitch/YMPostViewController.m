@@ -73,28 +73,10 @@
     self.textView.frame = CGRectMake(0, 0, self.view.bounds.size.width - 10, 150);
 }
 
+
 - (void)getGroups{
     [SVProgressHUD show];
-    
-    NSString *urlString = @"https://www.yammer.com/api/v1/groups.json?sort_by=top_recent_activity&mine=1";
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"kAccessToken"];
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setValue:[NSString stringWithFormat:@"Bearer %@",accessToken] forHTTPHeaderField:@"Authorization"];
-    [request setHTTPMethod:@"GET"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [SVProgressHUD dismiss];
-        if (connectionError) {
-            NSLog(@"%@",[connectionError description]);
-        }
-        else{
-            id responseObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSLog(@"%@",responseObj);
-            self.groups = responseObj;
-        }
-    }];
+    [YMNetwork getGroupsForDelegate:self];
 }
 
 - (void)groupChangedToIndex:(NSInteger)index{
@@ -208,36 +190,25 @@
     }
     NSString *postBody = self.textView.text;
     
-    NSMutableData *data = [NSMutableData new];
-    [data appendData:[[NSString stringWithFormat:@"%@=%@", @"body",postBody]
-                      dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
-    [data appendData:[[NSString stringWithFormat:@"&%@=%@", @"group_id",groupId]
-                      dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
-    
-        
-    NSString *urlString = @"https://www.yammer.com/api/v1/messages.json";
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"kAccessToken"];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setValue:[NSString stringWithFormat:@"Bearer %@",accessToken] forHTTPHeaderField:@"Authorization"];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d",[data length]] forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    
-    [request setHTTPBody:data];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            NSLog(@"%@",[connectionError description]);
-            [SVProgressHUD showErrorWithStatus:[connectionError description]];
+    [YMNetwork postMessage:postBody toGroup:groupId forDelegate:self];
+}
 
-        }
-        else{
-            [SVProgressHUD showSuccessWithStatus:@"Sent"];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }];
+#pragma mark - YMNetworkDelegate Methods
+
+- (void)groupsAvailable:(id)groups error:(NSError *)error{
+    [SVProgressHUD dismiss];
+    if (groups) {
+        self.groups = groups;
+    }
+}
+
+- (void)messageSentWithError:(NSError *)error{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error description]];
+    }
+    else{
+        [SVProgressHUD showSuccessWithStatus:@"Sent"];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 @end
