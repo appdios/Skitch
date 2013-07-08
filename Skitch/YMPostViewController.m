@@ -9,12 +9,14 @@
 #import "YMPostViewController.h"
 #import "YMGroupViewController.h"
 #import "SVProgressHUD.h"
+#import "YMImageAttachmentView.h"
 
 @interface YMPostViewController ()
 
 @property (nonatomic, strong) id groups;
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *keyboardDismissButton;
+@property (nonatomic, strong) YMImageAttachmentView *attachmentView;
 @property (nonatomic) NSInteger selectedGroupIndex;
 @end
 
@@ -52,6 +54,9 @@
     self.textView.backgroundColor = [UIColor clearColor];
     self.textView.delegate = self;
     [self.textView setInputAccessoryView:self.keyboardDismissButton];
+    
+    self.attachmentView = [[YMImageAttachmentView alloc] initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width - 20, 80)];
+    [self.attachmentView insertThumbnails];
 }
 
 
@@ -140,6 +145,9 @@
         if (indexPath.row==0) {
             self.textView.frame = CGRectMake(10, 5, cell.bounds.size.width - 10, cell.bounds.size.height - 20);
             [cell addSubview:self.textView];
+        }
+        else if(indexPath.row==1){
+            [cell addSubview:self.attachmentView];
         }
     }
     else if(indexPath.section==2){

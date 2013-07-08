@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */; };
+		2715FF90178B52EB00246C7C /* YMImageAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2715FF8F178B52EB00246C7C /* YMImageAttachmentView.m */; };
 		27B8D067178B4EC9008F0A7E /* UIImage+Yammer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */; };
 		27B8D068178B4EC9008F0A7E /* YMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D053178B4EC9008F0A7E /* YMHelper.m */; };
 		27B8D069178B4EC9008F0A7E /* YMProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D055178B4EC9008F0A7E /* YMProperty.m */; };
@@ -75,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Strenuous3D.ttf; sourceTree = "<group>"; };
+		2715FF8E178B52EB00246C7C /* YMImageAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMImageAttachmentView.h; sourceTree = "<group>"; };
+		2715FF8F178B52EB00246C7C /* YMImageAttachmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMImageAttachmentView.m; sourceTree = "<group>"; };
 		27B8D050178B4EC9008F0A7E /* UIImage+Yammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Yammer.h"; sourceTree = "<group>"; };
 		27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Yammer.m"; sourceTree = "<group>"; };
 		27B8D052178B4EC9008F0A7E /* YMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMHelper.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				27B8D05C178B4EC9008F0A7E /* YMShapeView.m */,
 				27B8D05D178B4EC9008F0A7E /* YMSketchView.h */,
 				27B8D05E178B4EC9008F0A7E /* YMSketchView.m */,
+				2715FF8E178B52EB00246C7C /* YMImageAttachmentView.h */,
+				2715FF8F178B52EB00246C7C /* YMImageAttachmentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 				27B8D06E178B4EC9008F0A7E /* YMNetwork.m in Sources */,
 				27B8D06F178B4EC9008F0A7E /* YMArt.m in Sources */,
 				27B8D070178B4EC9008F0A7E /* YMShape.m in Sources */,
+				2715FF90178B52EB00246C7C /* YMImageAttachmentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +561,7 @@
 		27EBCB0D177A0F5F00785B84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sumit Kumar (78U487DE7J)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Skitch/Skitch-Prefix.pch";
 				INFOPLIST_FILE = "Skitch/Skitch-Info.plist";

@@ -204,6 +204,12 @@
 }
 
 - (void)gotoYammer{
+    UIImage *image = [self getImage];
+    self.currentArt.image = image;
+    [YMProperty saveArt:self.currentArt];
+    
+    [YMProperty markArtSelected:self.currentArt];
+    
     YMYammerAuthorizationViewController *yammerController = [[YMYammerAuthorizationViewController alloc] init];
     UINavigationController *yammerNavController = [[UINavigationController alloc] initWithRootViewController:yammerController];
     [self presentViewController:yammerNavController animated:YES completion:nil];

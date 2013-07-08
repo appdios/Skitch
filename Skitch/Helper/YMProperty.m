@@ -25,6 +25,7 @@
         sharedInstance.shapeType = YMShapeTypeArrow;
         sharedInstance.color = [UIColor redColor];
         sharedInstance.arts = [NSMutableArray array];
+        sharedInstance.selectedArts = [NSMutableArray array];
     });
     
     return sharedInstance;
@@ -71,8 +72,34 @@
             *stop = YES;
         }
     }];
-    [property.arts replaceObjectAtIndex:artIndex withObject:art];
+    if (artIndex < [property.arts count]) {
+        [property.arts replaceObjectAtIndex:artIndex withObject:art];
+    }
+    else{
+        [property.arts addObject:art];
+    }
 }
 
++ (void)markArtSelectedAtIndex:(NSInteger)index{
+    YMProperty *property = [YMProperty sharedInstance];
+    YMArt *art = [property.arts objectAtIndex:index];
+    if (![property.selectedArts containsObject:art]) {
+        [property.selectedArts addObject:art];
+    }
+}
+
++ (void)markArtSelected:(YMArt*)art{
+    YMProperty *property = [YMProperty sharedInstance];
+    if (![property.selectedArts containsObject:art]) {
+        [property.selectedArts addObject:art];
+    }
+}
+
++ (void)markArtUnSelected:(YMArt*)art{
+    YMProperty *property = [YMProperty sharedInstance];
+    if ([property.selectedArts containsObject:art]) {
+        [property.selectedArts removeObject:art];
+    }
+}
 
 @end

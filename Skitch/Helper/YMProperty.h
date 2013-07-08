@@ -12,6 +12,7 @@
 
 @interface YMProperty : NSObject
 @property (nonatomic, strong) NSMutableArray *arts;
+@property (nonatomic, strong) NSMutableArray *selectedArts;
 
 + (YMProperty *) sharedInstance;
 + (YMShapeType)currentShapeType;
@@ -21,4 +22,7 @@
 
 + (YMArt*)newArt;
 + (void)saveArt:(YMArt*)art;
++ (void)markArtSelectedAtIndex:(NSInteger)index;
++ (void)markArtSelected:(YMArt*)art;
++ (void)markArtUnSelected:(YMArt*)art;
 @end
