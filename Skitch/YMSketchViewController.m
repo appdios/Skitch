@@ -10,15 +10,13 @@
 #import "YMMenuView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "YMProperty.h"
-#import "UIImage+StackBlur.h"
-#import "UIImageView+Additional.h"
 #import "YMYammerAuthorizationViewController.h"
 #import "YMGalleryViewController.h"
-#import "UIImage+DSP.h"
+#import "UIImage+Yammer.h"
 #import "YMArt.h"
+
 @interface YMSketchViewController ()
 @property (nonatomic, strong) UIImageView *backView;
-@property (nonatomic, strong) UIImageView *cropView;
 @property (nonatomic, strong) YMMenuView *menuView;
 @property (nonatomic, strong) YMArt *currentArt;
 @property (nonatomic) CGFloat menuViewVisible;
@@ -43,12 +41,8 @@
     self.sketchView.delegate = self;
     
     self.backView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.backView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view insertSubview:self.backView belowSubview:self.sketchView];
-    
-    self.cropView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.cropView.contentMode = UIViewContentModeScaleAspectFill;
-    
+        
     self.menuView = [[YMMenuView alloc] initWithFrame:CGRectMake(-64*2, 0, 64*2, self.view.bounds.size.height)];
     [self.view addSubview:self.menuView];
         
@@ -75,7 +69,6 @@
     [self.sketchView.shapes removeAllObjects];
     [self.sketchView setNeedsDisplay];
     self.backView.image = nil;
-    self.cropView.image = nil;
     [self showStartMenu];
 }
 
@@ -159,8 +152,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    self.backView.image = chosenImage;
-    self.cropView.image = chosenImage;
+    self.backView.image = [chosenImage imageScaledToFitSize:self.view.bounds.size];
     self.sketchView.backgroundColor = [UIColor clearColor];
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -263,7 +255,7 @@
 
 - (void)blurInRect:(CGRect)rect
 {
-    UIImage *img =  [self.cropView crop:rect];
+    UIImage *img =  [self.backView.image imageCroppedToRect:rect];
     UIImage *blurImage = [img imageWithGaussianBlur];
 
     CGSize size = self.view.bounds.size;

@@ -10,6 +10,7 @@
 		270D33C9177E2CB0009A6353 /* YMShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D33C8177E2CB0009A6353 /* YMShapeView.m */; };
 		270D33CC177E2D77009A6353 /* YMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D33CB177E2D77009A6353 /* YMMenuView.m */; };
 		270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */; };
+		270ED3C8178B3F5D008B4E54 /* UIImage+Yammer.m in Sources */ = {isa = PBXBuildFile; fileRef = 270ED3C7178B3F5D008B4E54 /* UIImage+Yammer.m */; };
 		27EBCAF3177A0F5F00785B84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF2177A0F5F00785B84 /* UIKit.framework */; };
 		27EBCAF5177A0F5F00785B84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF4177A0F5F00785B84 /* Foundation.framework */; };
 		27EBCAF7177A0F5F00785B84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EBCAF6177A0F5F00785B84 /* CoreGraphics.framework */; };
@@ -53,12 +54,9 @@
 		5C145E301789E52A006B84A2 /* deletebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C145E261789E52A006B84A2 /* deletebutton@2x.png */; };
 		5C145E311789E52A006B84A2 /* gallerybutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C145E271789E52A006B84A2 /* gallerybutton@2x.png */; };
 		5C145E341789EC8A006B84A2 /* YMGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C145E331789EC8A006B84A2 /* YMGalleryViewController.m */; };
-		5C145E37178A304E006B84A2 /* UIImage+DSP.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C145E36178A304E006B84A2 /* UIImage+DSP.m */; };
 		5C145E39178A305E006B84A2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C145E38178A305E006B84A2 /* Accelerate.framework */; };
 		5C145E3C178A654E006B84A2 /* YMArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C145E3B178A654E006B84A2 /* YMArt.m */; };
 		5C4D4E6C17864A9F007D132C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4D4E6B17864A9F007D132C /* CoreImage.framework */; };
-		5C4D4E8017864F55007D132C /* UIImage+StackBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4D4E7F17864F55007D132C /* UIImage+StackBlur.m */; };
-		5C4D4E8317865569007D132C /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4D4E8217865569007D132C /* UIImageView+Additional.m */; };
 		5C9ACB2B17852F0900A74C12 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9ACB2A17852F0900A74C12 /* MessageUI.framework */; };
 		5C9ACB2D1785357C00A74C12 /* crossbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB2C1785357C00A74C12 /* crossbutton.png */; };
 		5C9ACB2F17853CC500A74C12 /* 1 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB2E17853CC500A74C12 /* 1 2.png */; };
@@ -80,6 +78,8 @@
 		270D33CA177E2D77009A6353 /* YMMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMMenuView.h; sourceTree = "<group>"; };
 		270D33CB177E2D77009A6353 /* YMMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMMenuView.m; sourceTree = "<group>"; };
 		270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Strenuous3D.ttf; sourceTree = "<group>"; };
+		270ED3C6178B3F5D008B4E54 /* UIImage+Yammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Yammer.h"; sourceTree = "<group>"; };
+		270ED3C7178B3F5D008B4E54 /* UIImage+Yammer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Yammer.m"; sourceTree = "<group>"; };
 		27EBCAEF177A0F5F00785B84 /* Skitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EBCAF2177A0F5F00785B84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27EBCAF4177A0F5F00785B84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,16 +138,10 @@
 		5C145E271789E52A006B84A2 /* gallerybutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallerybutton@2x.png"; sourceTree = "<group>"; };
 		5C145E321789EC8A006B84A2 /* YMGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMGalleryViewController.h; sourceTree = "<group>"; };
 		5C145E331789EC8A006B84A2 /* YMGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMGalleryViewController.m; sourceTree = "<group>"; };
-		5C145E35178A304E006B84A2 /* UIImage+DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSP.h"; sourceTree = "<group>"; };
-		5C145E36178A304E006B84A2 /* UIImage+DSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSP.m"; sourceTree = "<group>"; };
 		5C145E38178A305E006B84A2 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		5C145E3A178A654E006B84A2 /* YMArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMArt.h; sourceTree = "<group>"; };
 		5C145E3B178A654E006B84A2 /* YMArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMArt.m; sourceTree = "<group>"; };
 		5C4D4E6B17864A9F007D132C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		5C4D4E7E17864F55007D132C /* UIImage+StackBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+StackBlur.h"; sourceTree = "<group>"; };
-		5C4D4E7F17864F55007D132C /* UIImage+StackBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+StackBlur.m"; sourceTree = "<group>"; };
-		5C4D4E8117865569007D132C /* UIImageView+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additional.h"; sourceTree = "<group>"; };
-		5C4D4E8217865569007D132C /* UIImageView+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additional.m"; sourceTree = "<group>"; };
 		5C9ACB2A17852F0900A74C12 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		5C9ACB2C1785357C00A74C12 /* crossbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crossbutton.png; sourceTree = "<group>"; };
 		5C9ACB2E17853CC500A74C12 /* 1 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1 2.png"; path = "../../1 2.png"; sourceTree = "<group>"; };
@@ -243,12 +237,8 @@
 				5C145E3B178A654E006B84A2 /* YMArt.m */,
 				27EBCB20177A2EA900785B84 /* YMProperty.h */,
 				27EBCB21177A2EA900785B84 /* YMProperty.m */,
-				5C4D4E7E17864F55007D132C /* UIImage+StackBlur.h */,
-				5C4D4E7F17864F55007D132C /* UIImage+StackBlur.m */,
-				5C145E35178A304E006B84A2 /* UIImage+DSP.h */,
-				5C145E36178A304E006B84A2 /* UIImage+DSP.m */,
-				5C4D4E8117865569007D132C /* UIImageView+Additional.h */,
-				5C4D4E8217865569007D132C /* UIImageView+Additional.m */,
+				270ED3C6178B3F5D008B4E54 /* UIImage+Yammer.h */,
+				270ED3C7178B3F5D008B4E54 /* UIImage+Yammer.m */,
 				5C145DF51788B913006B84A2 /* YMHelper.h */,
 				5C145DF61788B913006B84A2 /* YMHelper.m */,
 				5C145E0617894DC3006B84A2 /* SVProgressHUD */,
@@ -440,15 +430,13 @@
 				5C145E0B17894DC3006B84A2 /* SVProgressHUD.m in Sources */,
 				27EBCB18177A10B100785B84 /* YMSketchView.m in Sources */,
 				27EBCB1B177A116B00785B84 /* YMShape.m in Sources */,
-				5C145E37178A304E006B84A2 /* UIImage+DSP.m in Sources */,
 				5C145E011788C1F4006B84A2 /* YMPostViewController.m in Sources */,
-				5C4D4E8017864F55007D132C /* UIImage+StackBlur.m in Sources */,
 				27EBCB22177A2EA900785B84 /* YMProperty.m in Sources */,
-				5C4D4E8317865569007D132C /* UIImageView+Additional.m in Sources */,
 				27EBCB27177BAC7600785B84 /* YMColorView.m in Sources */,
 				5C145DFA1788BBF2006B84A2 /* YMYammerAuthorizationViewController.m in Sources */,
 				270D33C9177E2CB0009A6353 /* YMShapeView.m in Sources */,
 				270D33CC177E2D77009A6353 /* YMMenuView.m in Sources */,
+				270ED3C8178B3F5D008B4E54 /* UIImage+Yammer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,12 +34,14 @@
         [self goToPostMessage];
     }
     else{
+        [self.navigationController setNavigationBarHidden:YES];
         [self getAccessToken];
     }
     
 }
 
 - (void)goToPostMessage{
+    [self.navigationController setNavigationBarHidden:NO];
     YMPostViewController *postController = [[YMPostViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:postController animated:YES];
 }
