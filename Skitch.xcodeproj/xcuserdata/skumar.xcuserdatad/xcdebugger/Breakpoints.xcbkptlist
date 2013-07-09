@@ -8,24 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Skitch/Network/YMNetwork.m"
-         timestampString = "395010544.497119"
+         timestampString = "395085636.5746"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
-         landmarkName = "+uploadImage:toGroup:delegate:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Skitch/Network/YMNetwork.m"
-         timestampString = "395010545.550515"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
          landmarkName = "+uploadImage:toGroup:delegate:"
          landmarkType = "5">
       </FileBreakpoint>

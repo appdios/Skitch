@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *keyboardDismissButton;
 @property (nonatomic, strong) YMImageAttachmentView *attachmentView;
+@property (nonatomic, strong) NSMutableArray *attachmentIds;
 @property (nonatomic) NSInteger selectedGroupIndex;
 @end
 
@@ -57,6 +58,8 @@
     
     self.attachmentView = [[YMImageAttachmentView alloc] initWithFrame:CGRectMake(20, 0, self.view.bounds.size.width - 40, 80)];
     [self.attachmentView insertThumbnails];
+    
+    self.attachmentIds = [NSMutableArray array];
 }
 
 
@@ -76,6 +79,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.textView.frame = CGRectMake(0, 0, self.view.bounds.size.width - 10, 150);
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+         self.attachmentView.frame = CGRectMake(80, 0, self.view.bounds.size.width - 160, 80);
+    }
+    else{
+         self.attachmentView.frame = CGRectMake(20, 0, self.view.bounds.size.width - 40, 80);
+    }
 }
 
 
@@ -162,7 +171,7 @@
         [self selectGroup];
     }
     else if(indexPath.section == 2){
-        [self postMessage];
+        [self uploadImages];
     }
 }
 
@@ -188,26 +197,28 @@
     return groupString;
 }
 
-- (void)postMessage{
+- (void)uploadImages{
+    [SVProgressHUD show];
     for (YMArt *art in [[YMProperty sharedInstance] selectedArts]) {
         id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
-        NSString *groupId = [group objectForKey:@"id"];
+        NSString *groupId = [[group objectForKey:@"id"] stringValue];
         if (groupId==nil) {
             groupId = @"0";
         }
         [YMNetwork uploadImage:art.image toGroup:groupId delegate:self];
     }
+}
+
+- (void)postMessage{
     
-//    [SVProgressHUD show];
-//    
-//    id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
-//    NSString *groupId = [group objectForKey:@"id"];
-//    if (groupId==nil) {
-//        groupId = @"0";
-//    }
-//    NSString *postBody = self.textView.text;
-//    
-//    [YMNetwork postMessage:postBody toGroup:groupId forDelegate:self];
+    id group = [self.groups objectAtIndex:self.selectedGroupIndex - 1];
+    NSString *groupId = [group objectForKey:@"id"];
+    if (groupId==nil) {
+        groupId = @"0";
+    }
+    NSString *postBody = self.textView.text;
+    
+    [YMNetwork postMessage:postBody toGroup:groupId withAttachmentIds:self.attachmentIds forDelegate:self];
 }
 
 #pragma mark - YMNetworkDelegate Methods
@@ -226,6 +237,15 @@
     else{
         [SVProgressHUD showSuccessWithStatus:@"Sent"];
         [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)imageUploadedWithId:(NSNumber *)fileId error:(NSError *)error{
+    if (error == nil) {
+        [self.attachmentIds addObject:fileId];
+    }
+    if ([[[YMProperty sharedInstance] selectedArts] count] == [self.attachmentIds count]) {
+        [self postMessage];
     }
 }
 @end

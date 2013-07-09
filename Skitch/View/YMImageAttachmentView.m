@@ -37,8 +37,12 @@
 
 -(void)insertThumbnails {
     CGFloat x = 0;
-    CGFloat thumbnailWidth = 50.0;
+    CGFloat thumbnailWidth = 40.0;
     CGFloat padding = 5.0;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        thumbnailWidth = 98;
+    }
     
     NSInteger artsCount = [[[YMProperty sharedInstance] selectedArts] count];
     for (int index = 0; index < artsCount; index ++ , x += thumbnailWidth + padding) {

@@ -7,6 +7,7 @@
 //
 
 #import "YMNetwork.h"
+#import "AFNetworking.h"
 
 static const NSString *kYammerBaseURL = @"https://www.yammer.com/api/v1/";
 
@@ -21,26 +22,29 @@ static const NSString *kYammerBaseURL = @"https://www.yammer.com/api/v1/";
     [request setValue:[NSString stringWithFormat:@"Bearer %@",accessToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            NSLog(@"%@",[connectionError description]);
-            [delegate groupsAvailable:nil error:connectionError];
-        }
-        else{
-            id responseObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSLog(@"%@",responseObj);
-            [delegate groupsAvailable:responseObj error:nil];
-        }
+    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+        NSLog(@"%@",JSON);
+        [delegate groupsAvailable:JSON error:nil];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response,NSError *error, id JSON){
+        NSLog(@"%@",[error description]);
+        [delegate groupsAvailable:nil error:error];
     }];
+    
+    [requestOperation start];
 }
 
-+ (void)postMessage:(NSString*)message toGroup:(NSString*)groupId forDelegate:(id<YMNetworkDelegate>)delegate{
++ (void)postMessage:(NSString*)message toGroup:(NSString*)groupId withAttachmentIds:(NSArray *)attachmentIds forDelegate:(id<YMNetworkDelegate>)delegate{
         
     NSMutableData *data = [NSMutableData new];
     [data appendData:[[NSString stringWithFormat:@"%@=%@", @"body",message]
                       dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
     [data appendData:[[NSString stringWithFormat:@"&%@=%@", @"group_id",groupId]
                       dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+    
+    for (id attachmentId in attachmentIds) {
+        [data appendData:[[NSString stringWithFormat:@"&%@=%@", @"attached_objects[]",[NSString stringWithFormat:@"uploaded_file:%@",attachmentId]]
+                          dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+    }
     
     NSString *host = [NSString stringWithFormat:@"%@%@",kYammerBaseURL,@"messages.json"];
     NSURL *url = [NSURL URLWithString:host];
@@ -55,58 +59,56 @@ static const NSString *kYammerBaseURL = @"https://www.yammer.com/api/v1/";
     
     [request setHTTPBody:data];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            NSLog(@"%@",[connectionError description]);
-            [delegate messageSentWithError:connectionError];
-        }
-        else{
-            [delegate messageSentWithError:nil];
-        }
+    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+        NSLog(@"%@",JSON);
+        [delegate messageSentWithError:nil];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response,NSError *error, id JSON){
+        NSLog(@"%@",[error description]);
+        [delegate messageSentWithError:error];
     }];
+    
+    [requestOperation start];
 }
 
 + (void)uploadImage:(UIImage*)image toGroup:(NSString*)groupId delegate:(id<YMNetworkDelegate>)delegate
 {
     NSData *uploadData = UIImagePNGRepresentation(image);
-    
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://files.yammer.com/v2/files?group_id=%@",groupId]]];
-    NSMutableData *postData = [NSMutableData new];
-    
-    NSString *boundary = @"0YKhTmLbOuNdArY";
-    [postData appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postData appendData:[@"Content-Disposition: form-data; name=\"userfile\"; filename=\"file.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-
-
-    [postData appendData:uploadData];
-    
-    [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    NSString *filename = @"image.png";
+    NSString *mimetype = @"image/png";
     
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"kAccessToken"];
 
-    [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@",accessToken] forHTTPHeaderField:@"Authorization"];
-    [urlRequest setValue:@"Accept" forHTTPHeaderField:@"*/*"];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
-//    [urlRequest setValue:[NSString stringWithFormat:@"%d",[postData length]] forHTTPHeaderField:@"Content-Length"];
-//    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    
-    [urlRequest setHTTPBody:postData];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            NSLog(@"%@",[connectionError description]);
-        }
-        else{
-            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@",str);
-            id responseObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSLog(@"%@",responseObj);
-        }
+    AFHTTPClient *client = [[self class] uploadClientWithURL:@"https://files.yammer.com" andToken:accessToken];
+    NSMutableURLRequest *urlRequest =[client multipartFormRequestWithMethod:@"POST" path:[NSString stringWithFormat:@"/v2/files"] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFormData:[groupId dataUsingEncoding:NSUTF8StringEncoding] name:@"group_id"];
+        [formData appendPartWithFormData:[filename dataUsingEncoding:NSUTF8StringEncoding] name:@"file_name"];
+        [formData appendPartWithFormData:[filename dataUsingEncoding:NSUTF8StringEncoding] name:@"name"];
+        [formData appendPartWithFileData:uploadData name:@"file" fileName:filename mimeType:mimetype];
     }];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    
+    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+        NSLog(@"%@",JSON);
+        NSNumber *fileId = [JSON valueForKeyPath:@"latest_version.file_id"];
+        [delegate imageUploadedWithId:fileId error:nil];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response,NSError *error, id JSON){
+        NSLog(@"%@",[error userInfo]);
+        [delegate imageUploadedWithId:nil error:error];
+    }];
+    
+    [requestOperation start];
+}
+
++ (AFHTTPClient *)uploadClientWithURL:(NSString *)url andToken:(NSString *)token
+{
+    NSURL *baseURL = [NSURL URLWithString:url];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    [httpClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    [httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", token]];
+    [httpClient setDefaultHeader:@"Accept" value:@"*/*"];
+    return httpClient;
 }
 
 @end

@@ -324,7 +324,12 @@
 }
 
 - (NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskLandscape;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    else{
+        return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 - (void)didReceiveMemoryWarning
