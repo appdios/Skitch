@@ -39,6 +39,7 @@
     self.sketchView.delegate = self;
     
     self.backView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.backView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.backView belowSubview:self.sketchView];
         
     self.menuView = [[YMMenuView alloc] initWithFrame:CGRectMake(-64*2, 0, 64*2, self.view.bounds.size.height)];
@@ -57,6 +58,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMenu) name:@"kHideMenuNotification" object:nil];
 
     [self performSelector:@selector(showStartMenu) withObject:nil afterDelay:0.1];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.backView.frame = self.view.bounds;
 }
 
 - (IBAction)addNew{
@@ -154,13 +160,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     self.backView.image = [chosenImage imageScaledToFitSize:self.view.bounds.size];
+    self.backView.image = [self getPickerImage];
     self.sketchView.backgroundColor = [UIColor clearColor];
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    [self showStartMenu];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self showStartMenu];
+    }];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -213,6 +221,20 @@
     YMYammerAuthorizationViewController *yammerController = [[YMYammerAuthorizationViewController alloc] init];
     UINavigationController *yammerNavController = [[UINavigationController alloc] initWithRootViewController:yammerController];
     [self presentViewController:yammerNavController animated:YES completion:nil];
+}
+
+- (UIImage*)getPickerImage
+{
+    CGSize size = self.view.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(size, YES, 1.0);
+    
+    if (self.backView) {
+        [self.backView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (UIImage*)getImage
@@ -299,6 +321,10 @@
         self.addButton.alpha =
         self.undoButton.alpha = 1.0;
     }];
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (void)didReceiveMemoryWarning

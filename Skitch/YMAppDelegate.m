@@ -19,7 +19,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.sketchViewController = [[YMSketchViewController alloc] initWithNibName:@"YMSketchViewController-iphone" bundle:nil];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        self.sketchViewController = [[YMSketchViewController alloc] initWithNibName:@"YMSketchViewController-ipad" bundle:nil];
+    }
+    else{
+        self.sketchViewController = [[YMSketchViewController alloc] initWithNibName:@"YMSketchViewController-iphone" bundle:nil];
+    }
+    
     [self.window setRootViewController:self.sketchViewController];
     
     [self.window makeKeyAndVisible];
@@ -51,6 +57,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

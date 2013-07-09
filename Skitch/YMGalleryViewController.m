@@ -65,8 +65,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegate artSelectedAtIndex:indexPath.row];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate artSelectedAtIndex:indexPath.row];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

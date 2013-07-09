@@ -72,6 +72,8 @@
 		5C9ACB44178616B000A74C12 /* curveshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3D178616B000A74C12 /* curveshape.png */; };
 		5C9ACB45178616B000A74C12 /* lineshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3E178616B000A74C12 /* lineshape.png */; };
 		5C9ACB46178616B000A74C12 /* textshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3F178616B000A74C12 /* textshape.png */; };
+		5CC53F78178BC8EA004FD66B /* hillock.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC53F77178BC8EA004FD66B /* hillock.ttf */; };
+		5CC53F7A178BC96F004FD66B /* Chunkfive.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC53F79178BC96F004FD66B /* Chunkfive.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +163,8 @@
 		5C9ACB3D178616B000A74C12 /* curveshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = curveshape.png; sourceTree = "<group>"; };
 		5C9ACB3E178616B000A74C12 /* lineshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineshape.png; sourceTree = "<group>"; };
 		5C9ACB3F178616B000A74C12 /* textshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textshape.png; sourceTree = "<group>"; };
+		5CC53F77178BC8EA004FD66B /* hillock.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hillock.ttf; sourceTree = "<group>"; };
+		5CC53F79178BC96F004FD66B /* Chunkfive.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chunkfive.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +297,8 @@
 		27EBCAF9177A0F5F00785B84 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CC53F79178BC96F004FD66B /* Chunkfive.otf */,
+				5CC53F77178BC8EA004FD66B /* hillock.ttf */,
 				270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */,
 				27EBCAFA177A0F5F00785B84 /* Skitch-Info.plist */,
 				27EBCAFB177A0F5F00785B84 /* InfoPlist.strings */,
@@ -425,6 +431,7 @@
 				27EBCB15177A0FD500785B84 /* YMSketchViewController-ipad.xib in Resources */,
 				5C145E181789544B006B84A2 /* rrectshape@2x.png in Resources */,
 				270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */,
+				5CC53F7A178BC96F004FD66B /* Chunkfive.otf in Resources */,
 				5C145E291789E52A006B84A2 /* undobutton.png in Resources */,
 				5C9ACB2D1785357C00A74C12 /* crossbutton.png in Resources */,
 				5C145E191789544B006B84A2 /* textshape@2x.png in Resources */,
@@ -442,6 +449,7 @@
 				5C145E2F1789E52A006B84A2 /* addbutton@2x.png in Resources */,
 				5C145E2E1789E52A006B84A2 /* sendbutton@2x.png in Resources */,
 				5C9ACB40178616B000A74C12 /* rrectshape.png in Resources */,
+				5CC53F78178BC8EA004FD66B /* hillock.ttf in Resources */,
 				5C9ACB41178616B000A74C12 /* circleshape.png in Resources */,
 				5C9ACB42178616B000A74C12 /* arrowshape.png in Resources */,
 				5C145E151789544B006B84A2 /* curveshape@2x.png in Resources */,

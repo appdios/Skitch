@@ -46,8 +46,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>MERKINS.ttf</string>
-		<string>MERKINS.ttf</string>
+		<string>Chunkfive.otf</string>
 		<string>Strenuous3D.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -62,8 +61,6 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>

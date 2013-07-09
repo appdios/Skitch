@@ -59,7 +59,7 @@
     [self.deleteButton addTarget:self action:@selector(deleteShape) forControlEvents:UIControlEventTouchUpInside];
     
     self.textView = [[UITextView alloc] init];
-    self.textView.font = [UIFont fontWithName:@"Strenuous3D" size:30];
+    self.textView.font = [UIFont fontWithName:@"Chunkfive" size:30];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.backgroundColor = [UIColor clearColor];
 }
@@ -87,23 +87,29 @@
         float normal[1]={1};
         CGContextSetLineDash(context,0,normal,0);
         CGContextConcatCTM(context, shape.transform);
-        CGContextAddPath(context, shape.path);
-        CGContextSetShadow(context, CGSizeMake(1, 1), 0);
+        
         
         switch (shape.type) {
             case YMShapeTypeRectangle:
             case YMShapeTypeCircular:
             case YMShapeTypeRoundedRectangle:
+                CGContextAddPath(context, shape.path);
+                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 CGContextDrawPath(context, kCGPathStroke);
                 break;
             case YMShapeTypeArrow:
+                CGContextAddPath(context, shape.path);
+                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 CGContextStrokePath(context);
                 break;
             case YMShapeTypeLine:
+                CGContextAddPath(context, shape.path);
+                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 CGContextStrokePath(context);
                 break;
             case YMShapeTypeBlur:
             {
+                CGContextAddPath(context, shape.path);
                 float dash[2]={6,5};
                 CGContextSetLineDash(context,0,dash,2);
                 CGContextSetLineWidth(context, 2.0);
@@ -112,8 +118,9 @@
             }
                 break;
             case YMSHapeTypeText:
+                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 [fillColor set];
-                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"Strenuous3D" size:30] lineBreakMode:NSLineBreakByCharWrapping];
+                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"Chunkfive" size:30] lineBreakMode:NSLineBreakByCharWrapping];
                 break;
             default:
                 break;
@@ -316,7 +323,7 @@
         [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, self.textViewHeight)];
     }
     else{
-        CGRect screenBounds = [UIScreen mainScreen].bounds;
+        CGRect screenBounds = self.bounds;
         CGSize textSize = [[textView.text stringByAppendingString:text] sizeWithFont:textView.font constrainedToSize:CGSizeMake(screenBounds.size.width - textView.frame.origin.x - 20, 500) lineBreakMode:NSLineBreakByWordWrapping];
         [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textSize.width + 20, textView.contentSize.height)];
         
@@ -337,7 +344,7 @@
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
     if ([textView.text length]) {
-        YMShape *shape = [YMShape currentShapeFromPoint:CGPointMake(CGRectGetMinX(textView.frame) + 8, CGRectGetMinY(textView.frame) + 8) toPoint:CGPointMake(CGRectGetMaxX(textView.frame) - 8, CGRectGetMaxY(textView.frame) - 8)];
+        YMShape *shape = [YMShape currentShapeFromPoint:CGPointMake(CGRectGetMinX(textView.frame) + 5, CGRectGetMinY(textView.frame) + 8) toPoint:CGPointMake(CGRectGetMaxX(textView.frame) - 5, CGRectGetMaxY(textView.frame) - 8)];
         shape.text = textView.text;
         
         [self.shapes addObject:shape];
