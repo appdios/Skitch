@@ -80,15 +80,13 @@
 }
 
 - (IBAction)undo{
+    [self.sketchView.shapes removeLastObject];
+    [self.sketchView setNeedsDisplay];
     if ([self.sketchView.shapes count] > 0) {
-        [self.sketchView.shapes removeLastObject];
-        [self.sketchView setNeedsDisplay];
-        if ([self.sketchView.shapes count] > 0) {
-            self.undoButton.hidden = NO;
-        }
-        else{
-            self.undoButton.hidden = YES;
-        }
+        self.undoButton.hidden = NO;
+    }
+    else{
+        self.undoButton.hidden = YES;
     }
 }
 

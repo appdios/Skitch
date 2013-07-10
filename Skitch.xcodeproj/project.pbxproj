@@ -19,7 +19,7 @@
 		27490438178C99EF00B2A50B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749042E178C99EF00B2A50B /* AFXMLRequestOperation.m */; };
 		27490439178C99EF00B2A50B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 27490430178C99EF00B2A50B /* UIImageView+AFNetworking.m */; };
 		2749043B178C9A0300B2A50B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749043A178C9A0300B2A50B /* SystemConfiguration.framework */; };
-		2749043D178DE6DD00B2A50B /* Aller_Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2749043C178DE6DD00B2A50B /* Aller_Bd.ttf */; };
+		2749043F178DE80500B2A50B /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2749043E178DE80500B2A50B /* SourceSansPro-Bold.otf */; };
 		27B8D067178B4EC9008F0A7E /* UIImage+Yammer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */; };
 		27B8D068178B4EC9008F0A7E /* YMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D053178B4EC9008F0A7E /* YMHelper.m */; };
 		27B8D069178B4EC9008F0A7E /* YMProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D055178B4EC9008F0A7E /* YMProperty.m */; };
@@ -110,7 +110,7 @@
 		2749042F178C99EF00B2A50B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		27490430178C99EF00B2A50B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		2749043A178C9A0300B2A50B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2749043C178DE6DD00B2A50B /* Aller_Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_Bd.ttf; sourceTree = "<group>"; };
+		2749043E178DE80500B2A50B /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
 		27B8D050178B4EC9008F0A7E /* UIImage+Yammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Yammer.h"; sourceTree = "<group>"; };
 		27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Yammer.m"; sourceTree = "<group>"; };
 		27B8D052178B4EC9008F0A7E /* YMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMHelper.h; sourceTree = "<group>"; };
@@ -358,7 +358,7 @@
 		27EBCAF9177A0F5F00785B84 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2749043C178DE6DD00B2A50B /* Aller_Bd.ttf */,
+				2749043E178DE80500B2A50B /* SourceSansPro-Bold.otf */,
 				5CC53F79178BC96F004FD66B /* Chunkfive.otf */,
 				5CC53F77178BC8EA004FD66B /* hillock.ttf */,
 				270D33D1177E4D1A009A6353 /* Strenuous3D.ttf */,
@@ -521,8 +521,8 @@
 				5C145E131789544B006B84A2 /* arrowshape@2x.png in Resources */,
 				5C145E161789544B006B84A2 /* lineshape@2x.png in Resources */,
 				5C9ACB44178616B000A74C12 /* curveshape.png in Resources */,
-				2749043D178DE6DD00B2A50B /* Aller_Bd.ttf in Resources */,
 				5C9ACB45178616B000A74C12 /* lineshape.png in Resources */,
+				2749043F178DE80500B2A50B /* SourceSansPro-Bold.otf in Resources */,
 				5C9ACB46178616B000A74C12 /* textshape.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

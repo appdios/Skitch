@@ -25,4 +25,7 @@
 + (void)markArtSelectedAtIndex:(NSInteger)index;
 + (void)markArtSelected:(YMArt*)art;
 + (void)markArtUnSelected:(YMArt*)art;
+
++ (void)saveArts;
++ (NSArray*)readArts;
 @end

@@ -48,7 +48,7 @@
 	<array>
 		<string>Chunkfive.otf</string>
 		<string>Strenuous3D.ttf</string>
-		<string>Aller_Bd.ttf</string>
+		<string>SourceSansPro-Bold.otf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

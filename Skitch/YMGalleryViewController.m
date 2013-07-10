@@ -35,10 +35,19 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"GalleryCell"];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.itemSize = CGSizeMake(100, 100);
-    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-    layout.minimumInteritemSpacing = 5;
-    layout.minimumLineSpacing = 5;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        layout.itemSize = CGSizeMake(220, 170);
+        layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 20;
+    }
+    else{
+        layout.itemSize = CGSizeMake(65, 100);
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 10;
+    }
+    
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editGallery:)];
     self.navigationItem.rightBarButtonItem = editButton;
@@ -182,7 +191,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.layer.masksToBounds = YES;
     cell.backgroundView = imageView;
-    
+
     if (self.editMode) {
         if ([[[YMProperty sharedInstance] selectedArts] containsObject:art]) {
             cell.layer.borderWidth = 2.0;
@@ -192,6 +201,9 @@
         else{
             cell.layer.borderWidth = 0.0;
         }
+    }
+    else{
+        cell.layer.borderWidth = 0.0;
     }
     
     return cell;

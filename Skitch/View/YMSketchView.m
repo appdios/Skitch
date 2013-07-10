@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic) CGFloat textViewHeight;
 @property (nonatomic) BOOL backPressed;
+@property (nonatomic, strong) UIButton *keyboardDismissButton;
 @end
 
 @implementation YMSketchView
@@ -58,10 +59,25 @@
     [self.deleteButton setImage:[UIImage imageNamed:@"deletebutton"] forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteShape) forControlEvents:UIControlEventTouchUpInside];
     
+    self.keyboardDismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
+    [self.keyboardDismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+    self.keyboardDismissButton.backgroundColor = [UIColor grayColor];
+    [self.keyboardDismissButton addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    
     self.textView = [[UITextView alloc] init];
-    self.textView.font = [UIFont fontWithName:@"Aller_Bd" size:30];
+    self.textView.font = [UIFont fontWithName:@"SourceSansPro-Bold" size:30];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.backgroundColor = [UIColor clearColor];
+    [self.textView setInputAccessoryView:self.keyboardDismissButton];
+
+}
+
+- (void)dismissKeyboard{
+    if (self.textView.superview) {
+        [self.textView resignFirstResponder];
+        [self.textView removeFromSuperview];
+        return;
+    }
 }
 
 
@@ -120,7 +136,7 @@
             case YMSHapeTypeText:
                 CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 [fillColor set];
-                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"Aller_Bd" size:30] lineBreakMode:NSLineBreakByCharWrapping];
+                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:30] lineBreakMode:NSLineBreakByCharWrapping];
                 break;
             default:
                 break;
@@ -223,6 +239,10 @@
     self.textView.textColor = [YMProperty currentColor];
     [self addSubview:self.textView];
     [self.textView becomeFirstResponder];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.transform = CGAffineTransformMakeTranslation(0, - (point.y-20));
+    }];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -312,6 +332,8 @@
 }
 
 #pragma mark - UITextViewDelegate
+
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text length]==0) {
@@ -354,6 +376,9 @@
         [self.shapes addObject:shape];
         [self setNeedsDisplay];
     }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.transform = CGAffineTransformIdentity;
+    }];
     return TRUE;
 }
 @end

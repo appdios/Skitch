@@ -24,7 +24,7 @@
         sharedInstance = [[YMProperty alloc] init];
         sharedInstance.shapeType = YMShapeTypeArrow;
         sharedInstance.color = [UIColor redColor];
-        sharedInstance.arts = [NSMutableArray array];
+        sharedInstance.arts = [NSMutableArray arrayWithArray:[YMProperty readArts]];
         sharedInstance.selectedArts = [NSMutableArray array];
     });
     
@@ -100,6 +100,47 @@
     if ([property.selectedArts containsObject:art]) {
         [property.selectedArts removeObject:art];
     }
+}
+
++ (void)saveArts{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDir stringByAppendingPathComponent:@"arts"];
+    [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    YMProperty *property = [YMProperty sharedInstance];
+    NSInteger imageIndex = 0;
+    for (YMArt *art in property.arts) {
+        [[self class] saveImage:art.image withFileName:[NSString stringWithFormat:@"%d",imageIndex] ofType:@"png" inDirectory:filePath];
+        imageIndex ++;
+    }
+}
+
++ (NSArray*)readArts{
+    NSMutableArray *artsArray = [NSMutableArray array];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDir stringByAppendingPathComponent:@"arts"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *savedArts = [fileManager contentsOfDirectoryAtPath:filePath error:nil];
+    for (NSString *aString in savedArts) {
+        if ([aString hasSuffix:@".png"]) {
+            UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",filePath,aString]];
+            if (image) {
+                YMArt *art = [[YMArt alloc] init];
+                art.image = image;
+                art.tag = [artsArray count]+1;
+                [artsArray addObject:art];
+            }
+        }
+    }
+    return artsArray;
+}
+
++ (void) saveImage:(UIImage *)image withFileName:(NSString *)imageName ofType:(NSString *)extension inDirectory:(NSString *)directoryPath {
+    [UIImagePNGRepresentation(image) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, @"png"]] options:NSAtomicWrite error:nil];
 }
 
 @end
