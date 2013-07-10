@@ -20,6 +20,9 @@
 		27490439178C99EF00B2A50B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 27490430178C99EF00B2A50B /* UIImageView+AFNetworking.m */; };
 		2749043B178C9A0300B2A50B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749043A178C9A0300B2A50B /* SystemConfiguration.framework */; };
 		2749043F178DE80500B2A50B /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2749043E178DE80500B2A50B /* SourceSansPro-Bold.otf */; };
+		27490441178E00FC00B2A50B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27490440178E00FC00B2A50B /* Social.framework */; };
+		27490444178E04DA00B2A50B /* gesturearrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 27490442178E04DA00B2A50B /* gesturearrow.png */; };
+		27490445178E04DA00B2A50B /* gesturearrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27490443178E04DA00B2A50B /* gesturearrow@2x.png */; };
 		27B8D067178B4EC9008F0A7E /* UIImage+Yammer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */; };
 		27B8D068178B4EC9008F0A7E /* YMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D053178B4EC9008F0A7E /* YMHelper.m */; };
 		27B8D069178B4EC9008F0A7E /* YMProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D055178B4EC9008F0A7E /* YMProperty.m */; };
@@ -111,6 +114,9 @@
 		27490430178C99EF00B2A50B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		2749043A178C9A0300B2A50B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2749043E178DE80500B2A50B /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
+		27490440178E00FC00B2A50B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		27490442178E04DA00B2A50B /* gesturearrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesturearrow.png; sourceTree = "<group>"; };
+		27490443178E04DA00B2A50B /* gesturearrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesturearrow@2x.png"; sourceTree = "<group>"; };
 		27B8D050178B4EC9008F0A7E /* UIImage+Yammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Yammer.h"; sourceTree = "<group>"; };
 		27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Yammer.m"; sourceTree = "<group>"; };
 		27B8D052178B4EC9008F0A7E /* YMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMHelper.h; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27490441178E00FC00B2A50B /* Social.framework in Frameworks */,
 				5C8051AD178CEC9100BBFD08 /* MobileCoreServices.framework in Frameworks */,
 				2749043B178C9A0300B2A50B /* SystemConfiguration.framework in Frameworks */,
 				5C145E39178A305E006B84A2 /* Accelerate.framework in Frameworks */,
@@ -313,6 +320,7 @@
 		27EBCAF1177A0F5F00785B84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27490440178E00FC00B2A50B /* Social.framework */,
 				5C8051AC178CEC9100BBFD08 /* MobileCoreServices.framework */,
 				2749043A178C9A0300B2A50B /* SystemConfiguration.framework */,
 				5C145E38178A305E006B84A2 /* Accelerate.framework */,
@@ -400,6 +408,8 @@
 				5C145E251789E52A006B84A2 /* addbutton@2x.png */,
 				5C145E261789E52A006B84A2 /* deletebutton@2x.png */,
 				5C145E271789E52A006B84A2 /* gallerybutton@2x.png */,
+				27490442178E04DA00B2A50B /* gesturearrow.png */,
+				27490443178E04DA00B2A50B /* gesturearrow@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -486,7 +496,9 @@
 			files = (
 				5C145E281789E52A006B84A2 /* undobutton@2x.png in Resources */,
 				5C145E0A17894DC3006B84A2 /* SVProgressHUD.bundle in Resources */,
+				27490444178E04DA00B2A50B /* gesturearrow.png in Resources */,
 				5C145E2C1789E52A006B84A2 /* deletebutton.png in Resources */,
+				27490445178E04DA00B2A50B /* gesturearrow@2x.png in Resources */,
 				27EBCAFD177A0F5F00785B84 /* InfoPlist.strings in Resources */,
 				27EBCB05177A0F5F00785B84 /* Default.png in Resources */,
 				27EBCB07177A0F5F00785B84 /* Default@2x.png in Resources */,

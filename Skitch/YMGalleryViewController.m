@@ -9,6 +9,7 @@
 #import "YMGalleryViewController.h"
 #import "YMYammerAuthorizationViewController.h"
 #import "SVProgressHUD.h"
+#import <Social/Social.h>
 
 @interface YMGalleryViewController ()
 @property (nonatomic) BOOL editMode;
@@ -88,8 +89,8 @@
 }
 
 - (void)share{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yammer",@"Email",@"Save to photo album", nil];
-    [actionSheet showInView:self.view];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yammer",@"Facebook",@"Twitter", @"Email",@"Save to photo album", nil];
+    [actionSheet showFromToolbar:self.toolBar];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -99,9 +100,15 @@
             [self gotoYammer];
             break;
         case 1:
-            [self emailImage];
+            [self postToFacebook];
             break;
         case 2:
+            [self postToTwitter];
+            break;
+        case 3:
+            [self emailImage];
+            break;
+        case 4:
             [self saveToAlbum];
             break;
             
@@ -114,6 +121,42 @@
     YMYammerAuthorizationViewController *yammerController = [[YMYammerAuthorizationViewController alloc] init];
     UINavigationController *yammerNavController = [[UINavigationController alloc] initWithRootViewController:yammerController];
     [self presentViewController:yammerNavController animated:YES completion:nil];
+}
+
+- (void)postToFacebook{
+    if(NSClassFromString(@"SLComposeViewController") != nil) {
+        SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            [SVProgressHUD show];
+            for (YMArt *art in [[YMProperty sharedInstance] selectedArts]) {
+                [fbController addImage:art.image];
+            }
+            [self presentViewController:fbController animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+            
+        } else {
+            // Service not available
+        }
+    }
+}
+
+- (void)postToTwitter{
+    if(NSClassFromString(@"SLComposeViewController") != nil) {
+        SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            [SVProgressHUD show];
+            for (YMArt *art in [[YMProperty sharedInstance] selectedArts]) {
+                [fbController addImage:art.image];
+            }
+            [self presentViewController:fbController animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+            
+        } else {
+            // Service not available
+        }
+    }
 }
 
 - (void)emailImage{

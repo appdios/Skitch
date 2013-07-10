@@ -12,13 +12,18 @@
 #import "YMGalleryViewController.h"
 #import "UIImage+Yammer.h"
 #import "YMArt.h"
+#import <Social/Social.h>
+#import "SVProgressHUD.h"
 
 @interface YMSketchViewController ()
 @property (nonatomic, strong) UIImageView *backView;
 @property (nonatomic, strong) YMMenuView *menuView;
 @property (nonatomic, strong) YMArt *currentArt;
+@property (nonatomic, strong) UIImageView *helpView;
+@property (nonatomic, strong) UILabel *helpLabel;
 @property (nonatomic, strong) UIPopoverController *popOver;
 @property (nonatomic) CGFloat menuViewVisible;
+@property (nonatomic) BOOL helpShown;
 @end
 
 @implementation YMSketchViewController
@@ -47,6 +52,15 @@
         
     self.menuView = [[YMMenuView alloc] initWithFrame:CGRectMake(-64*2, 0, 64*2, self.view.bounds.size.height)];
     [self.view addSubview:self.menuView];
+    
+    self.helpView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gesturearrow"]];
+    self.helpView.alpha = 0.8;
+    
+    self.helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+    self.helpLabel.backgroundColor = [UIColor clearColor];
+    self.helpLabel.text = @"Slide for menu";
+    self.helpLabel.font = [UIFont systemFontOfSize:14];
+    self.helpLabel.textColor = [UIColor darkGrayColor];
         
     [self.shareButton setImage:[UIImage imageNamed:@"sendbutton"] forState:UIControlStateNormal];
     [self.addButton setImage:[UIImage imageNamed:@"addbutton"] forState:UIControlStateNormal];
@@ -61,6 +75,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMenu) name:@"kHideMenuNotification" object:nil];
 
     [self performSelector:@selector(showStartMenu) withObject:nil afterDelay:0.1];
+    
+    self.helpShown = [[NSUserDefaults standardUserDefaults] boolForKey:@"kHelpShown"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -102,7 +118,7 @@
 }
 
 - (IBAction)shareClicked:(id)sender{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yammer",@"Email",@"Save to photo album", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yammer",@"Facebook",@"Twitter", @"Email",@"Save to photo album", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -206,9 +222,15 @@
                 [self gotoYammer];
                 break;
             case 1:
-                [self emailImage:image];
+                [self postToFacebook];
                 break;
             case 2:
+                [self postToTwitter];
+                break;
+            case 3:
+                [self emailImage:image];
+                break;
+            case 4:
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
                 break;
                 
@@ -228,6 +250,40 @@
     YMYammerAuthorizationViewController *yammerController = [[YMYammerAuthorizationViewController alloc] init];
     UINavigationController *yammerNavController = [[UINavigationController alloc] initWithRootViewController:yammerController];
     [self presentViewController:yammerNavController animated:YES completion:nil];
+}
+
+- (void)postToFacebook{
+    if(NSClassFromString(@"SLComposeViewController") != nil) {
+        SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            [SVProgressHUD show];
+            UIImage *image = [self getImage];
+            [fbController addImage:image];
+            [self presentViewController:fbController animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+            
+        } else {
+            // Service not available
+        }
+    }
+}
+
+- (void)postToTwitter{
+    if(NSClassFromString(@"SLComposeViewController") != nil) {
+        SLComposeViewController *fbController=[SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            [SVProgressHUD show];
+            UIImage *image = [self getImage];
+            [fbController addImage:image];
+            [self presentViewController:fbController animated:YES completion:^{
+                [SVProgressHUD dismiss];
+            }];
+            
+        } else {
+            // Service not available
+        }
+    }
 }
 
 - (UIImage*)getPickerImage
@@ -328,6 +384,28 @@
         self.addButton.alpha =
         self.undoButton.alpha = 1.0;
     }];
+    
+    if (!self.helpShown) {
+        self.helpShown = YES;
+        self.helpView.center = CGPointMake(self.helpView.bounds.size.width / 2, self.view.center.y);
+        [self.view addSubview:self.helpView];
+        
+        self.helpLabel.center = CGPointMake(self.helpLabel.bounds.size.width / 2 + 5, self.view.center.y);
+        [self.view addSubview:self.helpLabel];
+        self.helpLabel.alpha = 0.1;
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            self.helpView.transform = CGAffineTransformMakeTranslation(100, 0);
+            self.helpView.alpha = 0.0;
+            self.helpLabel.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [self.helpView removeFromSuperview];
+            [self.helpLabel removeFromSuperview];
+        }];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kHelpShown"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 
