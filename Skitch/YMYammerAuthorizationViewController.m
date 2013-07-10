@@ -28,20 +28,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = @"Yammer";
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"kAccessToken"];
     if (accessToken) {
         [self goToPostMessage];
     }
     else{
-        [self.navigationController setNavigationBarHidden:YES];
         [self getAccessToken];
     }
     
 }
 
 - (void)goToPostMessage{
-    [self.navigationController setNavigationBarHidden:NO];
     YMPostViewController *postController = [[YMPostViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:postController animated:YES];
 }
@@ -49,6 +47,7 @@
 - (void)getAccessToken{
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     webView.delegate = self;
+    webView.scalesPageToFit = YES;
     [self.view addSubview:webView];
     
     NSString *urlString = @"https://www.yammer.com/dialog/oauth?client_id=09PCeq4LoiTUJpC1gSJQeQ&redirect_uri=http://www.appdios.com&response_type=token";

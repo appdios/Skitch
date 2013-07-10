@@ -32,4 +32,6 @@ typedef enum{
 + (YMShape*)arrowShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 + (YMShape*)roundedRectangleShapeInRect:(CGRect)rect;
 + (YMShape*)lineShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
+
+- (BOOL)isPointOnStroke:(CGPoint)point;
 @end

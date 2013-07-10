@@ -9,6 +9,10 @@
 #import "YMShape.h"
 #import "YMProperty.h"
 
+@interface YMShape()
+@property (nonatomic) CGPoint startPoint;
+@property (nonatomic) CGPoint endPoint;
+@end
 @implementation YMShape
 
 + (YMShape*)currentShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
@@ -138,6 +142,9 @@
     
     shape.color = [YMProperty currentColor];
     shape.transform = CGAffineTransformIdentity;
+    
+    shape.startPoint = startPoint;
+    shape.endPoint = endPoint;
     return shape;
 }
 
@@ -165,6 +172,53 @@
     shape.color = [YMProperty currentColor];
     shape.transform = CGAffineTransformIdentity;
     return shape;
+}
+
+
+#define FLOAT_EQE(x,v,e)((((v)-(e))<(x))&&((x)<((v)+(e))))
+
+static bool Within(float fl, float flLow, float flHi, float flEp){
+    if((fl>flLow) && (fl<flHi)){ return true; }
+    if(FLOAT_EQE(fl,flLow,flEp) || FLOAT_EQE(fl,flHi,flEp)){ return true; }
+    return false;
+}
+
+static bool PointOnLine(CGPoint ptL1, const CGPoint ptL2, const CGPoint ptTest, float flEp){
+    bool bTestX = true;
+    const float flX = ptL2.x-ptL1.x;
+    if(FLOAT_EQE(flX,0.0f,flEp)){
+        if(!FLOAT_EQE(ptTest.x,ptL1.x,flEp)){ return false; }
+        bTestX = false;
+    }
+    bool bTestY = true;
+    const float flY = ptL2.y-ptL1.y;
+    if(FLOAT_EQE(flY,0.0f,flEp)){
+        if(!FLOAT_EQE(ptTest.y,ptL1.y,flEp)){ return false; }
+        bTestY = false;
+    }
+    const float pX = bTestX?((ptTest.x-ptL1.x)/flX):0.5f;
+    const float pY = bTestY?((ptTest.y-ptL1.y)/flY):0.5f;
+    return Within(pX,0.0f,1.0f,flEp) && Within(pY,0.0f,1.0f,flEp);
+}
+
+- (BOOL)isPointOnStroke:(CGPoint)point{
+    
+    if (self.type == YMShapeTypeCircular) {
+        CGRect pathRect = CGPathGetBoundingBox(self.path);
+        double Xvar = ( ( point.x - CGRectGetMidX(pathRect) ) * ( point.x - CGRectGetMidX(pathRect) ) ) / ( (CGRectGetWidth(pathRect)/2) * (CGRectGetWidth(pathRect)/2) );
+        double Yvar = ( ( point.y - CGRectGetMidY(pathRect) ) * ( point.y - CGRectGetMidY(pathRect) ) ) / ( (CGRectGetHeight(pathRect)/2) * (CGRectGetHeight(pathRect)/2));
+        if ( (Xvar + Yvar > 0.6) &&  (Xvar + Yvar < 1.2) )
+            return YES;
+        
+        return NO;
+    }
+    else if (self.type == YMShapeTypeLine) {
+        return PointOnLine(self.startPoint, self.endPoint, point, 0.003);
+    }
+    else{
+        return CGPathContainsPoint(self.path, nil, point, NO);
+    }
+    return YES;
 }
 
 

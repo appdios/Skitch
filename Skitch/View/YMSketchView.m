@@ -59,7 +59,7 @@
     [self.deleteButton addTarget:self action:@selector(deleteShape) forControlEvents:UIControlEventTouchUpInside];
     
     self.textView = [[UITextView alloc] init];
-    self.textView.font = [UIFont fontWithName:@"Chunkfive" size:30];
+    self.textView.font = [UIFont fontWithName:@"Aller_Bd" size:30];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.backgroundColor = [UIColor clearColor];
 }
@@ -120,7 +120,7 @@
             case YMSHapeTypeText:
                 CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 [fillColor set];
-                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"Chunkfive" size:30] lineBreakMode:NSLineBreakByCharWrapping];
+                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"Aller_Bd" size:30] lineBreakMode:NSLineBreakByCharWrapping];
                 break;
             default:
                 break;
@@ -199,10 +199,14 @@
         YMShape *shape = (YMShape*)obj;
         CGPoint tPoint = CGPointApplyAffineTransform(point, CGAffineTransformInvert(shape.transform));
 
-        if (CGPathContainsPoint(shape.path, nil, tPoint, YES)) {
+        if ([shape isPointOnStroke:tPoint]) {
             selectedShape = shape;
             *stop = YES;
         }
+//        if (CGPathContainsPoint(shape.path, nil, tPoint, YES)) {
+//            selectedShape = shape;
+//            *stop = YES;
+//        }
     }];
     return selectedShape;
 }
