@@ -255,7 +255,7 @@
         }
     }
 
-    [self.delegate touchStart];
+    [self.sketchDelegate touchStart];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -291,7 +291,7 @@
     if ([YMProperty currentShapeType] == YMShapeTypeBlur) {
         YMShape *shape = [self.shapes lastObject];
         CGRect rect = CGPathGetBoundingBox(shape.path);
-        [self.delegate blurInRect:rect];
+        [self.sketchDelegate blurInRect:rect];
         [self.shapes removeLastObject];
         [self setNeedsDisplay];
     }
@@ -304,7 +304,7 @@
         
     }
     self.currentShape = nil;
-    [self.delegate touchEnd];
+    [self.sketchDelegate touchEnd];
 }
 
 - (void)readyForScreenshot{

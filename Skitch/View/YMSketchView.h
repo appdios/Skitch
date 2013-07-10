@@ -16,7 +16,7 @@
 @interface YMSketchView : UIView<UITextViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *shapes;
-@property (nonatomic, weak) id<YMSketchViewDelegate> delegate;
+@property (nonatomic, weak) id<YMSketchViewDelegate> sketchDelegate;
 
 - (void)readyForScreenshot;
 @end

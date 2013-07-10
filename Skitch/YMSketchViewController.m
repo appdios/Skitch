@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIImageView *backView;
 @property (nonatomic, strong) YMMenuView *menuView;
 @property (nonatomic, strong) YMArt *currentArt;
+@property (nonatomic, strong) UIPopoverController *popOver;
 @property (nonatomic) CGFloat menuViewVisible;
 @end
 
@@ -36,9 +37,11 @@
     [super viewDidLoad];
 
     self.sketchView.backgroundColor = [UIColor whiteColor];
-    self.sketchView.delegate = self;
+    self.sketchView.sketchDelegate = self;
     
     self.backView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.backView.contentMode = UIViewContentModeCenter;
+    self.backView.backgroundColor = [UIColor whiteColor];
     self.backView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.backView belowSubview:self.sketchView];
         
@@ -112,17 +115,12 @@
 }
 
 - (void)artSelectedAtIndex:(NSInteger)index{
-    if (index == 0) {
-        [self addNew];
-    }
-    else{
-        YMArt *art = [[[YMProperty sharedInstance] arts] objectAtIndex:index - 1];
-        self.currentArt = art;
-        self.backView.image = art.image;
-        [self.sketchView.shapes removeAllObjects];
-        [self.sketchView setNeedsDisplay];
-        self.sketchView.backgroundColor = [UIColor clearColor];
-    }
+    YMArt *art = [[[YMProperty sharedInstance] arts] objectAtIndex:index];
+    self.currentArt = art;
+    self.backView.image = art.image;
+    [self.sketchView.shapes removeAllObjects];
+    [self.sketchView setNeedsDisplay];
+    self.sketchView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)showMenu{
@@ -151,10 +149,21 @@
 }
 
 - (void)openGallery{
+    
     UIImagePickerController *imageController = [[UIImagePickerController alloc] init];
     imageController.delegate = self;
     [imageController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [self presentViewController:imageController animated:YES completion:nil];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (self.popOver) {
+            self.popOver = nil;
+        }
+        self.popOver = [[UIPopoverController alloc] initWithContentViewController:imageController];
+        [self setContentSizeForViewInPopover:self.view.bounds.size];
+        [self.popOver presentPopoverFromRect:CGRectZero inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [self presentViewController:imageController animated:YES completion:nil];
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -323,14 +332,6 @@
     }];
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-        return UIInterfaceOrientationMaskLandscape;
-    }
-    else{
-        return UIInterfaceOrientationMaskPortrait;
-    }
-}
 
 - (void)didReceiveMemoryWarning
 {

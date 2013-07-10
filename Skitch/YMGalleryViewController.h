@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 @protocol YMGallerydelegate <NSObject>
 
 - (void)artSelectedAtIndex:(NSInteger)index;
+- (IBAction)addNew;
 
 @end
 
-@interface YMGalleryViewController : UICollectionViewController
+@interface YMGalleryViewController : UICollectionViewController<UIActionSheetDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, weak) id<YMGallerydelegate> delegate;
 @end

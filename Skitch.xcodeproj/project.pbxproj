@@ -70,6 +70,7 @@
 		5C145E341789EC8A006B84A2 /* YMGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C145E331789EC8A006B84A2 /* YMGalleryViewController.m */; };
 		5C145E39178A305E006B84A2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C145E38178A305E006B84A2 /* Accelerate.framework */; };
 		5C4D4E6C17864A9F007D132C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4D4E6B17864A9F007D132C /* CoreImage.framework */; };
+		5C8051AD178CEC9100BBFD08 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8051AC178CEC9100BBFD08 /* MobileCoreServices.framework */; };
 		5C9ACB2B17852F0900A74C12 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9ACB2A17852F0900A74C12 /* MessageUI.framework */; };
 		5C9ACB2D1785357C00A74C12 /* crossbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB2C1785357C00A74C12 /* crossbutton.png */; };
 		5C9ACB3417853EA900A74C12 /* menuback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3217853EA900A74C12 /* menuback.png */; };
@@ -180,6 +181,7 @@
 		5C145E331789EC8A006B84A2 /* YMGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMGalleryViewController.m; sourceTree = "<group>"; };
 		5C145E38178A305E006B84A2 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		5C4D4E6B17864A9F007D132C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		5C8051AC178CEC9100BBFD08 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5C9ACB2A17852F0900A74C12 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		5C9ACB2C1785357C00A74C12 /* crossbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crossbutton.png; sourceTree = "<group>"; };
 		5C9ACB3217853EA900A74C12 /* menuback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuback.png; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C8051AD178CEC9100BBFD08 /* MobileCoreServices.framework in Frameworks */,
 				2749043B178C9A0300B2A50B /* SystemConfiguration.framework in Frameworks */,
 				5C145E39178A305E006B84A2 /* Accelerate.framework in Frameworks */,
 				5C4D4E6C17864A9F007D132C /* CoreImage.framework in Frameworks */,
@@ -310,6 +313,7 @@
 		27EBCAF1177A0F5F00785B84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C8051AC178CEC9100BBFD08 /* MobileCoreServices.framework */,
 				2749043A178C9A0300B2A50B /* SystemConfiguration.framework */,
 				5C145E38178A305E006B84A2 /* Accelerate.framework */,
 				5C4D4E6B17864A9F007D132C /* CoreImage.framework */,
