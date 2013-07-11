@@ -154,6 +154,8 @@
             self.selectedShape.text = self.textField.text;
             [self.textField removeFromSuperview];
             self.textField.text = @"";
+            CGRect currentRect = CGPathGetBoundingBox(self.selectedShape.path);
+            currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
             [self setNeedsDisplay];
         }];
     }
@@ -277,6 +279,8 @@
     if (self.selectedShape == nil) {
         return;
     }
+    CGRect currentRect = CGPathGetBoundingBox(self.selectedShape.path);
+    currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
     [self.shapes removeObject:self.selectedShape];
     [self removeSelectionAnimation];
     [self setNeedsDisplay];
@@ -287,6 +291,8 @@
         return;
     }
     self.selectedShape.filled = !self.selectedShape.filled;
+    CGRect currentRect = CGPathGetBoundingBox(self.selectedShape.path);
+    currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
     [self setNeedsDisplay];
 }
 
@@ -300,7 +306,9 @@
     [self addSubview:self.textField];
     [self.textField becomeFirstResponder];
     self.selectedShape.textColor = [YMProperty currentColor];
-    [self setNeedsDisplay];
+    CGRect currentRect = CGPathGetBoundingBox(self.selectedShape.path);
+    currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
+    [self setNeedsDisplayInRect:currentRect];
 }
 
 - (void)addSelectionAnimation{
@@ -444,7 +452,10 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kShowMenuNotification" object:nil];
         }
         else{
+            CGRect previousRect = CGRectZero;
             if (self.currentShape) {
+                previousRect = CGPathGetBoundingBox(self.currentShape.path);
+                previousRect = CGRectMake(previousRect.origin.x - 5, previousRect.origin.y - 5, previousRect.size.width + 10, previousRect.size.height + 10);
                 [self.shapes removeLastObject];
                 self.currentShape = nil;
             }
@@ -452,7 +463,10 @@
             if ([YMProperty currentShapeType] != YMSHapeTypeText) {
                 self.currentShape = [YMShape currentShapeFromPoint:self.startPoint toPoint:point];
                 [self.shapes addObject:self.currentShape];
-                [self setNeedsDisplay];
+                
+                CGRect currentRect = CGPathGetBoundingBox(self.currentShape.path);
+                currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
+                [self setNeedsDisplayInRect:CGRectUnion(previousRect, currentRect)];
             }
             
         }
@@ -465,9 +479,10 @@
         CGRect rect = CGPathGetBoundingBox(shape.path);
         [self.sketchDelegate blurInRect:rect];
         [self.shapes removeLastObject];
-        [self setNeedsDisplay];
+        rect = CGRectMake(rect.origin.x - 5, rect.origin.y - 5, rect.size.width + 10, rect.size.height + 10);
+        [self setNeedsDisplayInRect:rect];
     }
-    else if(!self.selectedShape && !self.touchToOpenDrawer){
+    else if(self.currentShape && !self.touchToOpenDrawer){
         UITouch *touch = [touches anyObject];
         CGPoint point = [touch locationInView:self];
         CGFloat distance = distanceBetween(self.startPoint, point);
@@ -476,15 +491,25 @@
             distance = distanceFilter;
             CGPoint  newpoint = CGPointMake(self.startPoint.x + distance, self.startPoint.y);
             double angleInRadian = atan2(point.y-self.startPoint.y,point.x-self.startPoint.x);
+            if (([YMProperty currentShapeType] == YMShapeTypeCircular) ||
+                ([YMProperty currentShapeType] == YMShapeTypeRectangle) ||
+                ([YMProperty currentShapeType] == YMShapeTypeRoundedRectangle) ||
+                ([YMProperty currentShapeType] == YMShapeTypeStar)) {
+                angleInRadian = 45.0 * 0.0174532925;
+            }
             newpoint = rotatePoint(newpoint, angleInRadian, self.startPoint);
             if ([YMProperty currentShapeType] != YMSHapeTypeText) {
-                if (self.currentShape) {
-                    [self.shapes removeLastObject];
-                    self.currentShape = nil;
-                }
+                CGRect previousRect = CGRectZero;
+                previousRect = CGPathGetBoundingBox(self.currentShape.path);
+                previousRect = CGRectMake(previousRect.origin.x - 5, previousRect.origin.y - 5, previousRect.size.width + 10, previousRect.size.height + 10);
+                [self.shapes removeLastObject];
+                self.currentShape = nil;
+                
                 self.currentShape = [YMShape currentShapeFromPoint:self.startPoint toPoint:newpoint];
                 [self.shapes addObject:self.currentShape];
-                [self setNeedsDisplay];
+                CGRect currentRect = CGPathGetBoundingBox(self.currentShape.path);
+                currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
+                [self setNeedsDisplayInRect:CGRectUnion(previousRect, currentRect)];
             }
         }
         
@@ -542,7 +567,9 @@
         shape.text = textView.text;
         
         [self.shapes addObject:shape];
-        [self setNeedsDisplay];
+        CGRect currentRect = CGPathGetBoundingBox(shape.path);
+        currentRect = CGRectMake(currentRect.origin.x - 5, currentRect.origin.y - 5, currentRect.size.width + 10, currentRect.size.height + 10);
+        [self setNeedsDisplayInRect:currentRect];
     }
     return TRUE;
 }
