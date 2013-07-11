@@ -154,7 +154,12 @@
     else if(indexPath.section==1){
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row==0) {
-            self.textView.frame = CGRectMake(10, 5, cell.bounds.size.width - 10, cell.bounds.size.height - 20);
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+                self.textView.frame = CGRectMake(60, 5, cell.bounds.size.width - 120, cell.bounds.size.height - 10);
+            }
+            else{
+                self.textView.frame = CGRectMake(10, 5, cell.bounds.size.width - 10, cell.bounds.size.height - 10);
+            }
             [cell addSubview:self.textView];
         }
         else if(indexPath.row==1){

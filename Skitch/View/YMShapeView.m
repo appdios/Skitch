@@ -26,8 +26,8 @@
 - (void)addShapeButtons
 {
     CGSize imageSize = CGSizeMake(40, 40);
-    for (int i=0; i<8; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5, 10 + (imageSize.height+10)*i, imageSize.width, imageSize.height)];
+    for (int i=0; i<9; i++) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5, 30 + (imageSize.height+10)*i, imageSize.width, imageSize.height)];
         button.tag = i;
         button.layer.borderWidth = 1.0;
         button.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -59,6 +59,9 @@
                 [button setImage:[UIImage imageNamed:@"starshape"] forState:UIControlStateNormal];
                 break;
             case 7:
+                [button setImage:[UIImage imageNamed:@"heartshape"] forState:UIControlStateNormal];
+                break;
+            case 8:
                 [button setImage:[UIImage imageNamed:@"blurshape"] forState:UIControlStateNormal];
                 break;
             default:

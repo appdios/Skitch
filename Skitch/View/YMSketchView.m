@@ -125,7 +125,12 @@
         if (self.textView.center.y > kbHeight - 50) {
             
             [UIView animateWithDuration:duration animations:^{
-                self.transform = CGAffineTransformMakeTranslation(0, - 2*(self.textView.center.y - (kbHeight - 50)));
+                if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                    self.transform = CGAffineTransformMakeTranslation(0, - 2*(self.textView.center.y - (kbHeight - 50)));
+                }
+                else {
+                    self.transform = CGAffineTransformMakeTranslation(0, - (self.textView.center.y - (kbHeight - 50)));
+                }
             } completion:nil];
         }
     }
@@ -222,6 +227,7 @@
                     case YMShapeTypeRectangle:
                     case YMShapeTypeCircular:
                     case YMShapeTypeStar:
+                    case YMShapeTypeHeart:
                     case YMShapeTypeRoundedRectangle:
                     case YMShapeTypeArrow:
                         CGContextAddPath(context, shape.path);
@@ -246,6 +252,7 @@
                     case YMShapeTypeRectangle:
                     case YMShapeTypeCircular:
                     case YMShapeTypeStar:
+                    case YMShapeTypeHeart:
                     case YMShapeTypeRoundedRectangle:
                     case YMShapeTypeArrow:
                         CGContextAddPath(context, shape.path);
@@ -424,7 +431,7 @@
     else{
         [self removeSelectionAnimation];
         self.selectedShape = nil;
-        if (point.x < 5) {
+        if (point.x < 10) {
             self.touchToOpenDrawer = YES;
         }
         else{
@@ -494,6 +501,7 @@
             if (([YMProperty currentShapeType] == YMShapeTypeCircular) ||
                 ([YMProperty currentShapeType] == YMShapeTypeRectangle) ||
                 ([YMProperty currentShapeType] == YMShapeTypeRoundedRectangle) ||
+                ([YMProperty currentShapeType] == YMShapeTypeHeart) ||
                 ([YMProperty currentShapeType] == YMShapeTypeStar)) {
                 angleInRadian = 45.0 * 0.0174532925;
             }

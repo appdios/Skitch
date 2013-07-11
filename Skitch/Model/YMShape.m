@@ -40,6 +40,9 @@
         case YMShapeTypeLine:
             return [YMShape lineShapeFromPoint:startPoint toPoint:endPoint];
             break;
+        case YMShapeTypeHeart:
+            return [YMShape heartShapeInRect:rect];
+            break;
         case YMShapeTypeBlur:
             return [YMShape rectangleShapeInRect:rect];
             break;
@@ -70,6 +73,30 @@
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
 
+    shape.color = [YMProperty currentColor];
+    shape.transform = CGAffineTransformIdentity;
+    return shape;
+}
+
++ (YMShape*)heartShapeInRect:(CGRect)rect
+{
+    YMShape *shape = [[YMShape alloc] init];
+    shape.type = [YMProperty currentShapeType];
+    
+    CGPoint originPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGSize restSize = CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect));
+    
+    CGPoint startPoint = CGPointMake(originPoint.x + restSize.width/2, originPoint.y + (restSize.height*0.36));
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    CGPathMoveToPoint(pathRef, Nil, startPoint.x, startPoint.y);
+
+    CGPathAddCurveToPoint(pathRef, nil, originPoint.x, originPoint.y, originPoint.x, originPoint.y + restSize.height/2, originPoint.x + restSize.width/2, originPoint.y + restSize.height);
+    
+    CGPathMoveToPoint(pathRef, Nil, startPoint.x, startPoint.y);
+    CGPathAddCurveToPoint(pathRef, nil, originPoint.x + restSize.width, originPoint.y, originPoint.x + restSize.width, originPoint.y + restSize.height/2, originPoint.x + restSize.width/2, originPoint.y + restSize.height);
+    
+    shape.path = pathRef;
+    
     shape.color = [YMProperty currentColor];
     shape.transform = CGAffineTransformIdentity;
     return shape;

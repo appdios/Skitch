@@ -16,6 +16,7 @@ typedef enum{
     YMSHapeTypeText,
     YMShapeTypeLine,
     YMShapeTypeStar,
+    YMShapeTypeHeart,
     YMShapeTypeBlur
 }YMShapeType;
 
