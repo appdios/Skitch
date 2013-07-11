@@ -53,6 +53,7 @@
 
 - (void)getAccessToken{
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     webView.delegate = self;
     webView.scalesPageToFit = YES;
     [self.view addSubview:webView];

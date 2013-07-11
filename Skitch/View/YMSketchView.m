@@ -470,8 +470,22 @@
     else{
         UITouch *touch = [touches anyObject];
         CGPoint point = [touch locationInView:self];
-        if (distanceBetween(self.startPoint, point)<30) {
-            // TODO
+        CGFloat distance = distanceBetween(self.startPoint, point);
+        CGFloat distanceFilter = [YMProperty currentShapeType] == YMShapeTypeArrow ? 80 : 40;
+        if (distance < distanceFilter) {
+            distance = distanceFilter;
+            CGPoint  newpoint = CGPointMake(self.startPoint.x + distance, self.startPoint.y);
+            double angleInRadian = atan2(point.y-self.startPoint.y,point.x-self.startPoint.x);
+            newpoint = rotatePoint(newpoint, angleInRadian, self.startPoint);
+            if ([YMProperty currentShapeType] != YMSHapeTypeText) {
+                if (self.currentShape) {
+                    [self.shapes removeLastObject];
+                    self.currentShape = nil;
+                }
+                self.currentShape = [YMShape currentShapeFromPoint:self.startPoint toPoint:newpoint];
+                [self.shapes addObject:self.currentShape];
+                [self setNeedsDisplay];
+            }
         }
         
     }

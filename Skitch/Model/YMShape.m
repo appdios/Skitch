@@ -125,6 +125,7 @@
     shape.type = YMShapeTypeArrow;
     shape.filled = YES;
     CGFloat distance = distanceBetween(startPoint, endPoint);
+    
     CGFloat height = distance*0.1;
     
 	CGFloat numberOfV = 11;
