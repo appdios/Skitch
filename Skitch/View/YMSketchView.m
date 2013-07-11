@@ -467,7 +467,7 @@
         [self.shapes removeLastObject];
         [self setNeedsDisplay];
     }
-    else{
+    else if(!self.selectedShape && !self.touchToOpenDrawer){
         UITouch *touch = [touches anyObject];
         CGPoint point = [touch locationInView:self];
         CGFloat distance = distanceBetween(self.startPoint, point);
