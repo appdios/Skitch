@@ -44,6 +44,7 @@
 
 - (void)commonInitialization
 {
+    self.contentScaleFactor = [UIScreen mainScreen].scale;
     self.shapes = [NSMutableArray array];
     self.animationLayer = [CAShapeLayer layer];
     [self.animationLayer setFillColor:[[UIColor colorWithWhite:0.0 alpha:0.0] CGColor]];
@@ -108,12 +109,14 @@
         switch (shape.type) {
             case YMShapeTypeRectangle:
             case YMShapeTypeCircular:
+            case YMShapeTypeStar:
             case YMShapeTypeRoundedRectangle:
                 CGContextAddPath(context, shape.path);
                 CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 CGContextDrawPath(context, kCGPathStroke);
                 break;
             case YMShapeTypeArrow:
+//            case YMShapeTypeStar:
                 CGContextAddPath(context, shape.path);
                 CGContextSetShadow(context, CGSizeMake(1, 1), 0);
                 CGContextStrokePath(context);
@@ -144,7 +147,10 @@
         CGContextRestoreGState(context);
         
         
-        if (shape.type == YMShapeTypeArrow) {
+        if ((shape.type == YMShapeTypeArrow)
+//            ||
+//            (shape.type == YMShapeTypeStar)
+            ) {
             CGContextSaveGState(context);
             CGContextConcatCTM(context, shape.transform);
             CGContextSetLineWidth(context, 0.0);

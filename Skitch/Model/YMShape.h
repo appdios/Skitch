@@ -15,6 +15,7 @@ typedef enum{
     YMShapeTypeRectangle,
     YMSHapeTypeText,
     YMShapeTypeLine,
+    YMShapeTypeStar,
     YMShapeTypeBlur
 }YMShapeType;
 
@@ -28,6 +29,7 @@ typedef enum{
 
 + (YMShape*)currentShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 + (YMShape*)rectangleShapeInRect:(CGRect)rect;
++ (YMShape*)starShapeInRect:(CGRect)rect;
 + (YMShape*)circularShapeInRect:(CGRect)rect;
 + (YMShape*)arrowShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 + (YMShape*)roundedRectangleShapeInRect:(CGRect)rect;
