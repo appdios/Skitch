@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27EBCAEE177A0F5F00785B84"
-               BuildableName = "Skitch.app"
+               BuildableName = "ySmart.app"
                BlueprintName = "Skitch"
                ReferencedContainer = "container:Skitch.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27EBCAEE177A0F5F00785B84"
-            BuildableName = "Skitch.app"
+            BuildableName = "ySmart.app"
             BlueprintName = "Skitch"
             ReferencedContainer = "container:Skitch.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27EBCAEE177A0F5F00785B84"
-            BuildableName = "Skitch.app"
+            BuildableName = "ySmart.app"
             BlueprintName = "Skitch"
             ReferencedContainer = "container:Skitch.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27EBCAEE177A0F5F00785B84"
-            BuildableName = "Skitch.app"
+            BuildableName = "ySmart.app"
             BlueprintName = "Skitch"
             ReferencedContainer = "container:Skitch.xcodeproj">
          </BuildableReference>

@@ -123,7 +123,7 @@
 }
 
 - (void)showStartMenu{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Take a photo",@"Choose a photo",@"Start with blank", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Take a photo",@"Choose a photo",@"Snap from webpage", @"Start with blank", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];
 }
@@ -205,6 +205,9 @@
                 [self openGallery];
                 break;
             case 2:
+                [self openWebPage];
+                break;
+            case 3:
                 self.sketchView.backgroundColor = [UIColor whiteColor];
                 break;
             default:
@@ -238,6 +241,17 @@
                 break;
         }
     }
+}
+
+- (void)openWebPage{
+    YMWebSnapViewController *webController = [[YMWebSnapViewController alloc] initWithNibName:@"YMWebSnapViewController-iphone" bundle:nil];
+    webController.delegate = self;
+    [self presentViewController:webController animated:YES completion:nil];
+}
+
+- (void)snapedImageFromWeb:(UIImage *)image{
+    self.backView.image = [image imageScaledToFitSize:self.view.bounds.size];
+    self.sketchView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)gotoYammer{

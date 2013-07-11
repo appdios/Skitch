@@ -10,8 +10,9 @@
 #import "YMSketchView.h"
 #import <MessageUI/MessageUI.h>
 #import "YMGalleryViewController.h"
+#import "YMWebSnapViewController.h"
 
-@interface YMSketchViewController : UIViewController<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YMSketchViewDelegate, YMGallerydelegate>
+@interface YMSketchViewController : UIViewController<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YMSketchViewDelegate, YMGallerydelegate, YMWebSnapDelegate>
 
 @property (nonatomic, weak) IBOutlet YMSketchView *sketchView;
 @property (nonatomic, weak) IBOutlet UIButton *shareButton;
