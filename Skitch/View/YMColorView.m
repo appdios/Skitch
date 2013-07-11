@@ -25,9 +25,11 @@
 
 - (void)addColorButtons
 {
+    
     CGSize buttonSize = CGSizeMake(40, 40);
+    CGFloat heightToStart = self.bounds.size.height - (buttonSize.height+10)*9;
     for (int i=0; i<9; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 30 + (buttonSize.height + 10)*i, buttonSize.width, buttonSize.height)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, heightToStart/2 + (buttonSize.height + 10)*i, buttonSize.width, buttonSize.height)];
         button.tag = i;
         [button addTarget:self action:@selector(colorChanged:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];

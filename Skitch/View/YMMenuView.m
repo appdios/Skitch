@@ -70,11 +70,11 @@
 
 - (void)addSubViews
 {
-    self.shapeView = [[YMShapeView alloc] init];
-    [self addSubview:self.shapeView];
-
-    self.colorView = [[YMColorView alloc] init];
+    self.colorView = [[YMColorView alloc] initWithFrame:CGRectMake(0, 0, 64, self.bounds.size.height)];
     [self addSubview:self.colorView];
+    
+    self.shapeView = [[YMShapeView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.colorView.frame), 0, 64, self.bounds.size.height)];
+    [self addSubview:self.shapeView];
 }
 
 - (void)layoutSubviews

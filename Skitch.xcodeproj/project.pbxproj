@@ -147,7 +147,7 @@
 		27B8D064178B4EC9008F0A7E /* YMArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMArt.m; sourceTree = "<group>"; };
 		27B8D065178B4EC9008F0A7E /* YMShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMShape.h; sourceTree = "<group>"; };
 		27B8D066178B4EC9008F0A7E /* YMShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMShape.m; sourceTree = "<group>"; };
-		27EBCAEF177A0F5F00785B84 /* Skitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EBCAEF177A0F5F00785B84 /* ySmart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ySmart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EBCAF2177A0F5F00785B84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27EBCAF4177A0F5F00785B84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27EBCAF6177A0F5F00785B84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -328,7 +328,7 @@
 		27EBCAF0177A0F5F00785B84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27EBCAEF177A0F5F00785B84 /* Skitch.app */,
+				27EBCAEF177A0F5F00785B84 /* ySmart.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,7 +478,7 @@
 			);
 			name = Skitch;
 			productName = Skitch;
-			productReference = 27EBCAEF177A0F5F00785B84 /* Skitch.app */;
+			productReference = 27EBCAEF177A0F5F00785B84 /* ySmart.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -690,7 +690,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Skitch/Skitch-Prefix.pch";
 				INFOPLIST_FILE = "Skitch/Skitch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ySmart;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -702,7 +702,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Skitch/Skitch-Prefix.pch";
 				INFOPLIST_FILE = "Skitch/Skitch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ySmart;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

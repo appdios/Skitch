@@ -369,7 +369,13 @@
         self.addButton.alpha =
         self.undoButton.alpha = 0.0;
     }];
-    [self hideMenu];
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        
+    }
+    else{
+        [self hideMenu];
+    }
 }
 
 - (void)touchEnd{
@@ -404,7 +410,6 @@
             [self.view addSubview:self.helpLabel];
             self.helpLabel.alpha = 0.1;
         }
-        
         
         [UIView animateWithDuration:1.0 animations:^{
             self.helpView.transform = CGAffineTransformMakeTranslation(100, 0);

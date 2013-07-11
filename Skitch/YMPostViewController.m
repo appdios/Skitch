@@ -82,10 +82,12 @@
     [super viewWillAppear:animated];
     self.textView.frame = CGRectMake(0, 0, self.view.bounds.size.width - 10, 150);
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-         self.attachmentView.frame = CGRectMake(80, 0, self.view.bounds.size.width - 160, 80);
+        self.attachmentView.frame = CGRectMake(80, 0, self.view.bounds.size.width - 160, 80);
+        self.textView.frame = CGRectMake(60, 5, self.view.bounds.size.width - 120, 160 - 10);
     }
     else{
-         self.attachmentView.frame = CGRectMake(20, 0, self.view.bounds.size.width - 40, 80);
+        self.attachmentView.frame = CGRectMake(20, 0, self.view.bounds.size.width - 40, 80);
+        self.textView.frame = CGRectMake(10, 5, self.view.bounds.size.width - 10, 160- 10);
     }
 }
 
@@ -154,12 +156,6 @@
     else if(indexPath.section==1){
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row==0) {
-            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-                self.textView.frame = CGRectMake(60, 5, cell.bounds.size.width - 120, cell.bounds.size.height - 10);
-            }
-            else{
-                self.textView.frame = CGRectMake(10, 5, cell.bounds.size.width - 10, cell.bounds.size.height - 10);
-            }
             [cell addSubview:self.textView];
         }
         else if(indexPath.row==1){

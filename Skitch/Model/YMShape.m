@@ -17,71 +17,71 @@
 
 + (YMShape*)currentShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
 {
+    YMShape *shape = nil;
     CGRect rect = CGRectMake(startPoint.x, startPoint.y, endPoint.x - startPoint.x, endPoint.y - startPoint.y);
     switch ([YMProperty currentShapeType]) {
         case YMShapeTypeRectangle:
-            return [YMShape rectangleShapeInRect:rect];
+            shape = [YMShape rectangleShapeInRect:rect];
             break;
         case YMShapeTypeRoundedRectangle:
-            return [YMShape roundedRectangleShapeInRect:rect];
+            shape = [YMShape roundedRectangleShapeInRect:rect];
             break;
         case YMShapeTypeCircular:
-            return [YMShape circularShapeInRect:rect];
+            shape = [YMShape circularShapeInRect:rect];
             break;
         case YMShapeTypeArrow:
-            return [YMShape arrowShapeFromPoint:startPoint toPoint:endPoint];
+            shape = [YMShape arrowShapeFromPoint:startPoint toPoint:endPoint];
             break;
         case YMSHapeTypeText:
-            return [YMShape textShapeInRect:rect];
+            shape = [YMShape textShapeInRect:rect];
             break;
         case YMShapeTypeStar:
-            return [YMShape starShapeInRect:rect];
+            shape = [YMShape starShapeInRect:rect];
             break;
         case YMShapeTypeLine:
-            return [YMShape lineShapeFromPoint:startPoint toPoint:endPoint];
+            shape = [YMShape lineShapeFromPoint:startPoint toPoint:endPoint];
             break;
         case YMShapeTypeHeart:
-            return [YMShape heartShapeInRect:rect];
+            shape = [YMShape heartShapeInRect:rect];
             break;
         case YMShapeTypeBlur:
-            return [YMShape rectangleShapeInRect:rect];
+            shape = [YMShape rectangleShapeInRect:rect];
             break;
         default:
             break;
     }
-    return nil;
+    shape.startPoint = startPoint;
+    shape.endPoint = endPoint;
+    shape.type = [YMProperty currentShapeType];
+    shape.color = [YMProperty currentColor];
+    shape.transform = CGAffineTransformIdentity;
+    return shape;
 }
 
 + (YMShape*)textShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMSHapeTypeText;
     shape.text = @"Hello";
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
+    
     return shape;
 }
 
 + (YMShape*)rectangleShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = [YMProperty currentShapeType];
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
 
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)heartShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = [YMProperty currentShapeType];
     
     CGPoint originPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGSize restSize = CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect));
@@ -96,16 +96,12 @@
     CGPathAddCurveToPoint(pathRef, nil, originPoint.x + restSize.width, originPoint.y, originPoint.x + restSize.width, originPoint.y + restSize.height/2, originPoint.x + restSize.width/2, originPoint.y + restSize.height);
     
     shape.path = pathRef;
-    
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)starShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = [YMProperty currentShapeType];
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     
@@ -127,29 +123,23 @@
     
     shape.path = pathRef;
     
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)circularShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMShapeTypeCircular;
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddEllipseInRect(pathRef, nil, rect);
     shape.path = pathRef;
 
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)arrowShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMShapeTypeArrow;
     shape.filled = YES;
     CGFloat distance = distanceBetween(startPoint, endPoint);
     
@@ -183,15 +173,12 @@
     
     shape.path = pathRef;
     
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 
 + (YMShape*)lineShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMShapeTypeLine;
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     
@@ -200,11 +187,6 @@
 
     shape.path = pathRef;
     
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
-    
-    shape.startPoint = startPoint;
-    shape.endPoint = endPoint;
     return shape;
 }
 
@@ -212,7 +194,6 @@
 + (YMShape*)roundedRectangleShapeInRect:(CGRect)rect
 {
     YMShape *shape = [[YMShape alloc] init];
-    shape.type = YMShapeTypeRoundedRectangle;
     
     CGFloat minx = CGRectGetMinX(rect), midx = CGRectGetMidX(rect), maxx = CGRectGetMaxX(rect);
     CGFloat miny = CGRectGetMinY(rect), midy = CGRectGetMidY(rect), maxy = CGRectGetMaxY(rect);
@@ -229,8 +210,6 @@
     
     shape.path = pathRef;
     
-    shape.color = [YMProperty currentColor];
-    shape.transform = CGAffineTransformIdentity;
     return shape;
 }
 

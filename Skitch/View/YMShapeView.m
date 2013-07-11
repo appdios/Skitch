@@ -25,9 +25,10 @@
 
 - (void)addShapeButtons
 {
-    CGSize imageSize = CGSizeMake(40, 40);
+    CGSize buttonSize = CGSizeMake(40, 40);
+    CGFloat heightToStart = self.bounds.size.height - (buttonSize.height+10)*9;
     for (int i=0; i<9; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5, 30 + (imageSize.height+10)*i, imageSize.width, imageSize.height)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5, heightToStart/2 + (buttonSize.height+10)*i, buttonSize.width, buttonSize.height)];
         button.tag = i;
         button.layer.borderWidth = 1.0;
         button.layer.borderColor = [UIColor lightGrayColor].CGColor;
