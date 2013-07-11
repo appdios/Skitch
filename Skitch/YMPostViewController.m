@@ -47,8 +47,10 @@
     
     self.keyboardDismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     [self.keyboardDismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
-    self.keyboardDismissButton.backgroundColor = [UIColor grayColor];
+    self.keyboardDismissButton.backgroundColor = [UIColor lightGrayColor];
     [self.keyboardDismissButton addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    [self.keyboardDismissButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.keyboardDismissButton.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
     
     self.textView = [[UITextView alloc] init];
     self.textView.font = [UIFont systemFontOfSize:14];

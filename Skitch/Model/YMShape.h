@@ -26,6 +26,8 @@ typedef enum{
 @property (nonatomic) CGAffineTransform transform;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic) BOOL filled;
 
 + (YMShape*)currentShapeFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint;
 + (YMShape*)rectangleShapeInRect:(CGRect)rect;

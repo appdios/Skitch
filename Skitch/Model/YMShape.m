@@ -66,7 +66,6 @@
 {
     YMShape *shape = [[YMShape alloc] init];
     shape.type = [YMProperty currentShapeType];
-    
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
@@ -124,7 +123,7 @@
 {
     YMShape *shape = [[YMShape alloc] init];
     shape.type = YMShapeTypeArrow;
-        
+    shape.filled = YES;
     CGFloat distance = distanceBetween(startPoint, endPoint);
     CGFloat height = distance*0.1;
     
@@ -235,7 +234,7 @@ static bool PointOnLine(CGPoint ptL1, const CGPoint ptL2, const CGPoint ptTest, 
 }
 
 - (BOOL)isPointOnStroke:(CGPoint)point{
-    
+    return CGPathContainsPoint(self.path, nil, point, NO);
     if (self.type == YMShapeTypeCircular) {
         CGRect pathRect = CGPathGetBoundingBox(self.path);
         double Xvar = ( ( point.x - CGRectGetMidX(pathRect) ) * ( point.x - CGRectGetMidX(pathRect) ) ) / ( (CGRectGetWidth(pathRect)/2) * (CGRectGetWidth(pathRect)/2) );
