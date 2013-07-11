@@ -58,7 +58,7 @@
     
     self.helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
     self.helpLabel.backgroundColor = [UIColor clearColor];
-    self.helpLabel.text = @"Slide for menu";
+    self.helpLabel.text = @"Swipe for menu";
     self.helpLabel.font = [UIFont systemFontOfSize:14];
     self.helpLabel.textColor = [UIColor darkGrayColor];
         
@@ -387,12 +387,23 @@
     
     if (!self.helpShown) {
         self.helpShown = YES;
-        self.helpView.center = CGPointMake(self.helpView.bounds.size.width / 2, self.view.center.y);
-        [self.view addSubview:self.helpView];
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+            self.helpView.center = CGPointMake(self.helpView.bounds.size.width / 2, 768/2);
+            [self.view addSubview:self.helpView];
+            
+            self.helpLabel.center = CGPointMake(self.helpLabel.bounds.size.width / 2 + 5, 768/2);
+            [self.view addSubview:self.helpLabel];
+            self.helpLabel.alpha = 0.1;
+        }
+        else{
+            self.helpView.center = CGPointMake(self.helpView.bounds.size.width / 2, self.view.center.y);
+            [self.view addSubview:self.helpView];
+            
+            self.helpLabel.center = CGPointMake(self.helpLabel.bounds.size.width / 2 + 5, self.view.center.y);
+            [self.view addSubview:self.helpLabel];
+            self.helpLabel.alpha = 0.1;
+        }
         
-        self.helpLabel.center = CGPointMake(self.helpLabel.bounds.size.width / 2 + 5, self.view.center.y);
-        [self.view addSubview:self.helpLabel];
-        self.helpLabel.alpha = 0.1;
         
         [UIView animateWithDuration:1.0 animations:^{
             self.helpView.transform = CGAffineTransformMakeTranslation(100, 0);
