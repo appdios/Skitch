@@ -369,6 +369,7 @@
         self.addButton.alpha =
         self.undoButton.alpha = 0.0;
     }];
+    [self hideMenu];
 }
 
 - (void)touchEnd{

@@ -34,9 +34,16 @@
         [self goToPostMessage];
     }
     else{
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+        self.navigationItem.leftBarButtonItem = cancelButton;
+        
         [self getAccessToken];
     }
     
+}
+
+- (void)cancel{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)goToPostMessage{
@@ -46,6 +53,7 @@
 
 - (void)getAccessToken{
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     webView.delegate = self;
     webView.scalesPageToFit = YES;
     [self.view addSubview:webView];

@@ -3,36 +3,36 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A2A6C37C-3CCE-493E-A214-1BE9ABE6FEF1</string>
+	<string>33812211-B189-417E-A296-F0A894CDD7E3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Skitch</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>833E500E-9AC8-4714-A986-ED673B9F56C2</key>
-		<string>ssh://github.com/appdios/Skitch.git</string>
+		<key>ADC00029-95F3-4283-B816-B0296206A022</key>
+		<string>https://github.com/appdios/Skitch.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Skitch.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>833E500E-9AC8-4714-A986-ED673B9F56C2</key>
+		<key>ADC00029-95F3-4283-B816-B0296206A022</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/appdios/Skitch.git</string>
+	<string>https://github.com/appdios/Skitch.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>833E500E-9AC8-4714-A986-ED673B9F56C2</string>
+	<string>ADC00029-95F3-4283-B816-B0296206A022</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>833E500E-9AC8-4714-A986-ED673B9F56C2</string>
+			<string>ADC00029-95F3-4283-B816-B0296206A022</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Skitch</string>
+			<string>skitch</string>
 		</dict>
 	</array>
 </dict>

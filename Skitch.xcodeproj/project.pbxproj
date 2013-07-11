@@ -85,6 +85,12 @@
 		5C9ACB44178616B000A74C12 /* curveshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3D178616B000A74C12 /* curveshape.png */; };
 		5C9ACB45178616B000A74C12 /* lineshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3E178616B000A74C12 /* lineshape.png */; };
 		5C9ACB46178616B000A74C12 /* textshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9ACB3F178616B000A74C12 /* textshape.png */; };
+		5CC201D5178E32D4005517A0 /* starshape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201D4178E32D4005517A0 /* starshape@2x.png */; };
+		5CC201D7178E3323005517A0 /* starshape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201D6178E3323005517A0 /* starshape.png */; };
+		5CC201DA178E4CD2005517A0 /* fillbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201D8178E4CD2005517A0 /* fillbutton.png */; };
+		5CC201DB178E4CD2005517A0 /* fillbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201D9178E4CD2005517A0 /* fillbutton@2x.png */; };
+		5CC201DE178E5F12005517A0 /* textbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201DC178E5F12005517A0 /* textbutton.png */; };
+		5CC201DF178E5F12005517A0 /* textbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC201DD178E5F12005517A0 /* textbutton@2x.png */; };
 		5CC53F78178BC8EA004FD66B /* hillock.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC53F77178BC8EA004FD66B /* hillock.ttf */; };
 		5CC53F7A178BC96F004FD66B /* Chunkfive.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC53F79178BC96F004FD66B /* Chunkfive.otf */; };
 /* End PBXBuildFile section */
@@ -199,6 +205,12 @@
 		5C9ACB3D178616B000A74C12 /* curveshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = curveshape.png; sourceTree = "<group>"; };
 		5C9ACB3E178616B000A74C12 /* lineshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineshape.png; sourceTree = "<group>"; };
 		5C9ACB3F178616B000A74C12 /* textshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textshape.png; sourceTree = "<group>"; };
+		5CC201D4178E32D4005517A0 /* starshape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starshape@2x.png"; sourceTree = "<group>"; };
+		5CC201D6178E3323005517A0 /* starshape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starshape.png; sourceTree = "<group>"; };
+		5CC201D8178E4CD2005517A0 /* fillbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fillbutton.png; sourceTree = "<group>"; };
+		5CC201D9178E4CD2005517A0 /* fillbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fillbutton@2x.png"; sourceTree = "<group>"; };
+		5CC201DC178E5F12005517A0 /* textbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbutton.png; sourceTree = "<group>"; };
+		5CC201DD178E5F12005517A0 /* textbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbutton@2x.png"; sourceTree = "<group>"; };
 		5CC53F77178BC8EA004FD66B /* hillock.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hillock.ttf; sourceTree = "<group>"; };
 		5CC53F79178BC96F004FD66B /* Chunkfive.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chunkfive.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -397,6 +409,10 @@
 				5C9ACB361785409D00A74C12 /* shapebuttons */,
 				5C9ACB3217853EA900A74C12 /* menuback.png */,
 				5C9ACB3317853EA900A74C12 /* menuback@2x.png */,
+				5CC201DC178E5F12005517A0 /* textbutton.png */,
+				5CC201DD178E5F12005517A0 /* textbutton@2x.png */,
+				5CC201D8178E4CD2005517A0 /* fillbutton.png */,
+				5CC201D9178E4CD2005517A0 /* fillbutton@2x.png */,
 				5C9ACB2C1785357C00A74C12 /* crossbutton.png */,
 				5C145E1E1789E52A006B84A2 /* undobutton@2x.png */,
 				5C145E1F1789E52A006B84A2 /* undobutton.png */,
@@ -417,6 +433,8 @@
 		5C9ACB361785409D00A74C12 /* shapebuttons */ = {
 			isa = PBXGroup;
 			children = (
+				5CC201D6178E3323005517A0 /* starshape.png */,
+				5CC201D4178E32D4005517A0 /* starshape@2x.png */,
 				5C145E1C1789DDA2006B84A2 /* blurshape.png */,
 				5C145E1A178959EC006B84A2 /* blurshape@2x.png */,
 				5C145E0C1789544B006B84A2 /* arrowshape@2x.png */,
@@ -501,13 +519,16 @@
 				27490445178E04DA00B2A50B /* gesturearrow@2x.png in Resources */,
 				27EBCAFD177A0F5F00785B84 /* InfoPlist.strings in Resources */,
 				27EBCB05177A0F5F00785B84 /* Default.png in Resources */,
+				5CC201DA178E4CD2005517A0 /* fillbutton.png in Resources */,
 				27EBCB07177A0F5F00785B84 /* Default@2x.png in Resources */,
 				27EBCB09177A0F5F00785B84 /* Default-568h@2x.png in Resources */,
+				5CC201D5178E32D4005517A0 /* starshape@2x.png in Resources */,
 				27EBCB13177A0FB200785B84 /* YMSketchViewController-iphone.xib in Resources */,
 				5C145E2B1789E52A006B84A2 /* gallerybutton.png in Resources */,
 				27EBCB15177A0FD500785B84 /* YMSketchViewController-ipad.xib in Resources */,
 				5C145E181789544B006B84A2 /* rrectshape@2x.png in Resources */,
 				270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */,
+				5CC201D7178E3323005517A0 /* starshape.png in Resources */,
 				5CC53F7A178BC96F004FD66B /* Chunkfive.otf in Resources */,
 				5C145E291789E52A006B84A2 /* undobutton.png in Resources */,
 				5C9ACB2D1785357C00A74C12 /* crossbutton.png in Resources */,
@@ -520,7 +541,9 @@
 				5C9ACB3417853EA900A74C12 /* menuback.png in Resources */,
 				5C145E1B178959EC006B84A2 /* blurshape@2x.png in Resources */,
 				5C145E311789E52A006B84A2 /* gallerybutton@2x.png in Resources */,
+				5CC201DE178E5F12005517A0 /* textbutton.png in Resources */,
 				5C9ACB3517853EA900A74C12 /* menuback@2x.png in Resources */,
+				5CC201DF178E5F12005517A0 /* textbutton@2x.png in Resources */,
 				5C145E2F1789E52A006B84A2 /* addbutton@2x.png in Resources */,
 				5C145E2E1789E52A006B84A2 /* sendbutton@2x.png in Resources */,
 				5C9ACB40178616B000A74C12 /* rrectshape.png in Resources */,
@@ -530,6 +553,7 @@
 				5C145E151789544B006B84A2 /* curveshape@2x.png in Resources */,
 				5C145E141789544B006B84A2 /* circleshape@2x.png in Resources */,
 				5C9ACB43178616B000A74C12 /* rectshape.png in Resources */,
+				5CC201DB178E4CD2005517A0 /* fillbutton@2x.png in Resources */,
 				5C145E131789544B006B84A2 /* arrowshape@2x.png in Resources */,
 				5C145E161789544B006B84A2 /* lineshape@2x.png in Resources */,
 				5C9ACB44178616B000A74C12 /* curveshape.png in Resources */,

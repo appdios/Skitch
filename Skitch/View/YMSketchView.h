@@ -13,7 +13,7 @@
 - (void)touchStart;
 - (void)touchEnd;
 @end
-@interface YMSketchView : UIView<UITextViewDelegate>
+@interface YMSketchView : UIView<UITextViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *shapes;
 @property (nonatomic, weak) id<YMSketchViewDelegate> sketchDelegate;

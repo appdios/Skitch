@@ -16,7 +16,10 @@
 @property (nonatomic, strong) YMShape *currentShape;
 @property (nonatomic, strong) CAShapeLayer *animationLayer;
 @property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic, strong) UIButton *fillButton;
+@property (nonatomic, strong) UIButton *textButton;
 @property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) UITextField *textField;
 @property (nonatomic) CGFloat textViewHeight;
 @property (nonatomic) BOOL backPressed;
 @property (nonatomic, strong) UIButton *keyboardDismissButton;
@@ -44,6 +47,7 @@
 
 - (void)commonInitialization
 {
+    self.contentScaleFactor = [UIScreen mainScreen].scale;
     self.shapes = [NSMutableArray array];
     self.animationLayer = [CAShapeLayer layer];
     [self.animationLayer setFillColor:[[UIColor colorWithWhite:0.0 alpha:0.0] CGColor]];
@@ -55,21 +59,106 @@
       [NSNumber numberWithInt:5],
       nil]];
     
-    self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+    self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [self.deleteButton setImage:[UIImage imageNamed:@"deletebutton"] forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteShape) forControlEvents:UIControlEventTouchUpInside];
     
+    self.fillButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [self.fillButton setImage:[UIImage imageNamed:@"fillbutton"] forState:UIControlStateNormal];
+    [self.fillButton addTarget:self action:@selector(switchFilled) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.textButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [self.textButton setImage:[UIImage imageNamed:@"textbutton"] forState:UIControlStateNormal];
+    [self.textButton addTarget:self action:@selector(addRemoveText) forControlEvents:UIControlEventTouchUpInside];
+    
     self.keyboardDismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
     [self.keyboardDismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
-    self.keyboardDismissButton.backgroundColor = [UIColor grayColor];
+    self.keyboardDismissButton.backgroundColor = [UIColor lightGrayColor];
     [self.keyboardDismissButton addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    [self.keyboardDismissButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.keyboardDismissButton.titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
     
     self.textView = [[UITextView alloc] init];
     self.textView.font = [UIFont fontWithName:@"SourceSansPro-Bold" size:30];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.backgroundColor = [UIColor clearColor];
     [self.textView setInputAccessoryView:self.keyboardDismissButton];
+    
+    self.textField = [[UITextField alloc] init];
+    [self.textField setBorderStyle:UITextBorderStyleRoundedRect];
+    self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.textField setFont:[UIFont boldSystemFontOfSize:22]];
+    [self.textField setReturnKeyType:UIReturnKeyDone];
+    [self.textField setTextAlignment:NSTextAlignmentCenter];
+    self.textField.backgroundColor = [UIColor whiteColor];
+    self.textField.layer.cornerRadius = 6.0f;
+    self.textField.layer.masksToBounds = YES;
+    self.textField.delegate = self;
+    [self.textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
 
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqual:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)keyboardShown:(NSNotification*)notification{
+    CGFloat kbHeight = 0.0;
+    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        kbHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.width;
+    }
+    else {
+        kbHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    }
+    CGFloat duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    if (self.textView.superview) {
+        if (self.textView.center.y > kbHeight - 50) {
+            
+            [UIView animateWithDuration:duration animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, - 2*(self.textView.center.y - (kbHeight - 50)));
+            } completion:nil];
+        }
+    }
+    else if(self.textField.superview){
+        [UIView animateWithDuration:duration animations:^{
+            self.textField.center = CGPointMake(self.textField.center.x, self.bounds.size.height - kbHeight - self.textField.bounds.size.height/2);
+        }];
+    }
+
+}
+
+- (void)keyboardHide:(NSNotification*)notification{
+    CGFloat duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    if (self.textView.superview) {
+        [UIView animateWithDuration:duration animations:^{
+            self.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [self.textView removeFromSuperview];
+        }];
+    }
+    else if(self.textField.superview){
+        [UIView animateWithDuration:duration animations:^{
+            self.textField.center = CGPointMake(self.textField.center.x, self.bounds.size.height);
+        } completion:^(BOOL finished) {
+            self.selectedShape.text = self.textField.text;
+            [self.textField removeFromSuperview];
+            self.textField.text = @"";
+            [self setNeedsDisplay];
+        }];
+    }
+    
+    
 }
 
 - (void)dismissKeyboard{
@@ -104,54 +193,82 @@
         CGContextSetLineDash(context,0,normal,0);
         CGContextConcatCTM(context, shape.transform);
         
-        
-        switch (shape.type) {
-            case YMShapeTypeRectangle:
-            case YMShapeTypeCircular:
-            case YMShapeTypeRoundedRectangle:
-                CGContextAddPath(context, shape.path);
-                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
-                CGContextDrawPath(context, kCGPathStroke);
-                break;
-            case YMShapeTypeArrow:
-                CGContextAddPath(context, shape.path);
-                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
-                CGContextStrokePath(context);
-                break;
-            case YMShapeTypeLine:
-                CGContextAddPath(context, shape.path);
-                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
-                CGContextStrokePath(context);
-                break;
-            case YMShapeTypeBlur:
-            {
-                CGContextAddPath(context, shape.path);
-                float dash[2]={6,5};
-                CGContextSetLineDash(context,0,dash,2);
-                CGContextSetLineWidth(context, 2.0);
-                CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
-                CGContextDrawPath(context, kCGPathStroke);
-            }
-                break;
-            case YMSHapeTypeText:
-                CGContextSetShadow(context, CGSizeMake(1, 1), 0);
-                [fillColor set];
-                [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:30] lineBreakMode:NSLineBreakByCharWrapping];
-                break;
-            default:
-                break;
-        }
-        CGContextRestoreGState(context);
-        
-        
-        if (shape.type == YMShapeTypeArrow) {
-            CGContextSaveGState(context);
-            CGContextConcatCTM(context, shape.transform);
-            CGContextSetLineWidth(context, 0.0);
+        if (shape.type == YMShapeTypeLine) {
             CGContextAddPath(context, shape.path);
-            CGContextDrawPath(context, kCGPathFillStroke);
+            CGContextSetShadow(context, CGSizeMake(1, 1), 0);
+            CGContextStrokePath(context);
             CGContextRestoreGState(context);
         }
+        else if(shape.type == YMShapeTypeBlur){
+            CGContextAddPath(context, shape.path);
+            float dash[2]={6,5};
+            CGContextSetLineDash(context,0,dash,2);
+            CGContextSetLineWidth(context, 2.0);
+            CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
+            CGContextDrawPath(context, kCGPathStroke);
+            CGContextRestoreGState(context);
+        }
+        else if(shape.type == YMSHapeTypeText){
+            CGContextSetShadow(context, CGSizeMake(1, 1), 0);
+            [fillColor set];
+            [shape.text drawInRect:CGPathGetBoundingBox(shape.path) withFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:30] lineBreakMode:NSLineBreakByCharWrapping];
+            CGContextRestoreGState(context);
+        }
+        else{
+            if (shape.filled) {
+                switch (shape.type) {
+                    case YMShapeTypeRectangle:
+                    case YMShapeTypeCircular:
+                    case YMShapeTypeStar:
+                    case YMShapeTypeRoundedRectangle:
+                    case YMShapeTypeArrow:
+                        CGContextAddPath(context, shape.path);
+                        CGContextSetShadow(context, CGSizeMake(1, 1), 0);
+                        CGContextStrokePath(context);
+                        break;
+                    default:
+                        break;
+                }
+                CGContextRestoreGState(context);
+                
+                
+                CGContextSaveGState(context);
+                CGContextConcatCTM(context, shape.transform);
+                CGContextSetLineWidth(context, 0.0);
+                CGContextAddPath(context, shape.path);
+                CGContextDrawPath(context, kCGPathFillStroke);
+                CGContextRestoreGState(context);
+            }
+            else{
+                switch (shape.type) {
+                    case YMShapeTypeRectangle:
+                    case YMShapeTypeCircular:
+                    case YMShapeTypeStar:
+                    case YMShapeTypeRoundedRectangle:
+                    case YMShapeTypeArrow:
+                        CGContextAddPath(context, shape.path);
+                        CGContextSetShadow(context, CGSizeMake(1, 1), 0);
+                        CGContextDrawPath(context, kCGPathStroke);
+                        break;
+                    default:
+                        break;
+                }
+                CGContextRestoreGState(context);
+
+            }
+            
+            if ([shape.text length]) {
+                CGContextSaveGState(context);
+                CGContextConcatCTM(context, shape.transform);
+                [shape.textColor set];
+                CGRect pathrect = CGPathGetBoundingBox(shape.path);
+                CGSize textSize = [shape.text sizeWithFont:[UIFont boldSystemFontOfSize:18] constrainedToSize:pathrect.size lineBreakMode:NSLineBreakByWordWrapping];
+                CGRect newTextFrame = CGRectInset(pathrect, 0, (pathrect.size.height - textSize.height) / 2);
+                [shape.text drawInRect:newTextFrame withFont:[UIFont boldSystemFontOfSize:18] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+                CGContextRestoreGState(context);
+            }
+        }
+        
     }];
 
 }
@@ -162,6 +279,27 @@
     }
     [self.shapes removeObject:self.selectedShape];
     [self removeSelectionAnimation];
+    [self setNeedsDisplay];
+}
+
+- (void)switchFilled{
+    if (self.selectedShape == nil) {
+        return;
+    }
+    self.selectedShape.filled = !self.selectedShape.filled;
+    [self setNeedsDisplay];
+}
+
+- (void)addRemoveText{
+    if (self.selectedShape == nil) {
+        return;
+    }
+    self.textField.text = self.selectedShape.text;
+    self.textField.frame = CGRectMake(0, 0, self.bounds.size.width, 40);
+    self.textField.center = CGPointMake(self.textField.center.x, self.bounds.size.height);
+    [self addSubview:self.textField];
+    [self.textField becomeFirstResponder];
+    self.selectedShape.textColor = [YMProperty currentColor];
     [self setNeedsDisplay];
 }
 
@@ -185,13 +323,29 @@
     
     [self.animationLayer addAnimation:dashAnimation forKey:@"linePhase"];
     
-    self.deleteButton.center = CGPathGetPathBoundingBox(self.selectedShape.path).origin;
+    CGRect shapeBox = CGPathGetPathBoundingBox(self.selectedShape.path);
+    self.deleteButton.center = CGPointMake(shapeBox.origin.x, shapeBox.origin.y - 20);
     self.deleteButton.transform = self.selectedShape.transform;
     [self addSubview:self.deleteButton];
+    
+    if (!(self.selectedShape.type == YMSHapeTypeText ||
+        self.selectedShape.type == YMShapeTypeLine)) {
+        self.fillButton.center = CGPointMake(shapeBox.origin.x + 55, self.deleteButton.center.y);
+        self.fillButton.transform = self.selectedShape.transform;
+        [self addSubview:self.fillButton];
+    }
+    if (!(self.selectedShape.type == YMSHapeTypeText ||
+          self.selectedShape.type == YMShapeTypeArrow)) {
+        self.textButton.center = CGPointMake(shapeBox.origin.x + 2*55, self.deleteButton.center.y);
+        self.textButton.transform = self.selectedShape.transform;
+        [self addSubview:self.textButton];
+    }
 }
 
 - (void)removeSelectionAnimation{
     [self.deleteButton removeFromSuperview];
+    [self.fillButton removeFromSuperview];
+    [self.textButton removeFromSuperview];
     [self.animationLayer removeAllAnimations];
     [self.animationLayer removeFromSuperlayer];
 }
@@ -205,6 +359,8 @@
     [CATransaction commit];
     
     self.deleteButton.transform = self.selectedShape.transform;
+    self.fillButton.transform = self.selectedShape.transform;
+    self.textButton.transform = self.selectedShape.transform;
     [self setNeedsDisplay];
 }
 
@@ -239,10 +395,6 @@
     self.textView.textColor = [YMProperty currentColor];
     [self addSubview:self.textView];
     [self.textView becomeFirstResponder];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        self.transform = CGAffineTransformMakeTranslation(0, - (point.y-20));
-    }];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -315,11 +467,25 @@
         [self.shapes removeLastObject];
         [self setNeedsDisplay];
     }
-    else{
+    else if(!self.selectedShape && !self.touchToOpenDrawer){
         UITouch *touch = [touches anyObject];
         CGPoint point = [touch locationInView:self];
-        if (distanceBetween(self.startPoint, point)<30) {
-            // TODO
+        CGFloat distance = distanceBetween(self.startPoint, point);
+        CGFloat distanceFilter = [YMProperty currentShapeType] == YMShapeTypeArrow ? 80 : 40;
+        if (distance < distanceFilter) {
+            distance = distanceFilter;
+            CGPoint  newpoint = CGPointMake(self.startPoint.x + distance, self.startPoint.y);
+            double angleInRadian = atan2(point.y-self.startPoint.y,point.x-self.startPoint.x);
+            newpoint = rotatePoint(newpoint, angleInRadian, self.startPoint);
+            if ([YMProperty currentShapeType] != YMSHapeTypeText) {
+                if (self.currentShape) {
+                    [self.shapes removeLastObject];
+                    self.currentShape = nil;
+                }
+                self.currentShape = [YMShape currentShapeFromPoint:self.startPoint toPoint:newpoint];
+                [self.shapes addObject:self.currentShape];
+                [self setNeedsDisplay];
+            }
         }
         
     }
@@ -345,8 +511,10 @@
     }
     if ([[NSCharacterSet newlineCharacterSet] characterIsMember:[text characterAtIndex:text.length-1]])
     {
-        self.textViewHeight += [@"K" sizeWithFont:textView.font].height;
+        CGFloat tHeight = [@"K" sizeWithFont:textView.font].height + 5;
+        self.textViewHeight += tHeight;
         [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, self.textViewHeight)];
+        self.transform = CGAffineTransformTranslate(self.transform, 0, -(tHeight+27));
     }
     else{
         CGRect screenBounds = self.bounds;
@@ -376,9 +544,6 @@
         [self.shapes addObject:shape];
         [self setNeedsDisplay];
     }
-    [UIView animateWithDuration:0.2 animations:^{
-        self.transform = CGAffineTransformIdentity;
-    }];
     return TRUE;
 }
 @end

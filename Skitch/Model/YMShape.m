@@ -34,6 +34,9 @@
         case YMSHapeTypeText:
             return [YMShape textShapeInRect:rect];
             break;
+        case YMShapeTypeStar:
+            return [YMShape starShapeInRect:rect];
+            break;
         case YMShapeTypeLine:
             return [YMShape lineShapeFromPoint:startPoint toPoint:endPoint];
             break;
@@ -63,11 +66,40 @@
 {
     YMShape *shape = [[YMShape alloc] init];
     shape.type = [YMProperty currentShapeType];
-    
     CGMutablePathRef pathRef = CGPathCreateMutable();
     CGPathAddRect(pathRef, nil, rect);
     shape.path = pathRef;
 
+    shape.color = [YMProperty currentColor];
+    shape.transform = CGAffineTransformIdentity;
+    return shape;
+}
+
++ (YMShape*)starShapeInRect:(CGRect)rect
+{
+    YMShape *shape = [[YMShape alloc] init];
+    shape.type = [YMProperty currentShapeType];
+    
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    
+    CGPoint origin = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
+    
+    CGFloat alpha = (2 * M_PI) / 10;
+    CGFloat radius = MAX(CGRectGetWidth(rect), CGRectGetHeight(rect));
+    
+    for(int i = 11; i != 0; i--)
+    {
+        CGFloat r = radius*(i % 2 + 1)/2;
+        CGFloat omega = alpha * i;
+        
+        if (i==11) {
+            CGPathMoveToPoint(pathRef, nil, (r * sin(omega)) + origin.x, (r * cos(omega)) + origin.y);
+        }
+        CGPathAddLineToPoint(pathRef, nil,(r * sin(omega)) + origin.x, (r * cos(omega)) + origin.y);
+    }
+    
+    shape.path = pathRef;
+    
     shape.color = [YMProperty currentColor];
     shape.transform = CGAffineTransformIdentity;
     return shape;
@@ -91,8 +123,9 @@
 {
     YMShape *shape = [[YMShape alloc] init];
     shape.type = YMShapeTypeArrow;
-        
+    shape.filled = YES;
     CGFloat distance = distanceBetween(startPoint, endPoint);
+    
     CGFloat height = distance*0.1;
     
 	CGFloat numberOfV = 11;
@@ -202,7 +235,7 @@ static bool PointOnLine(CGPoint ptL1, const CGPoint ptL2, const CGPoint ptTest, 
 }
 
 - (BOOL)isPointOnStroke:(CGPoint)point{
-    
+    return CGPathContainsPoint(self.path, nil, point, NO);
     if (self.type == YMShapeTypeCircular) {
         CGRect pathRect = CGPathGetBoundingBox(self.path);
         double Xvar = ( ( point.x - CGRectGetMidX(pathRect) ) * ( point.x - CGRectGetMidX(pathRect) ) ) / ( (CGRectGetWidth(pathRect)/2) * (CGRectGetWidth(pathRect)/2) );
