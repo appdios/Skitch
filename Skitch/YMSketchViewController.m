@@ -244,9 +244,17 @@
 }
 
 - (void)openWebPage{
-    YMWebSnapViewController *webController = [[YMWebSnapViewController alloc] initWithNibName:@"YMWebSnapViewController-iphone" bundle:nil];
-    webController.delegate = self;
-    [self presentViewController:webController animated:YES completion:nil];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        YMWebSnapViewController *webController = [[YMWebSnapViewController alloc] initWithNibName:@"YMWebSnapViewController-ipad" bundle:nil];
+        webController.delegate = self;
+        [self presentViewController:webController animated:YES completion:nil];
+    }
+    else{
+        YMWebSnapViewController *webController = [[YMWebSnapViewController alloc] initWithNibName:@"YMWebSnapViewController-iphone" bundle:nil];
+        webController.delegate = self;
+        [self presentViewController:webController animated:YES completion:nil];
+    }
+    
 }
 
 - (void)snapedImageFromWeb:(UIImage *)image{

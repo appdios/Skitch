@@ -31,6 +31,7 @@
 		27B81E03178F772600A06529 /* rightarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B81DFF178F772600A06529 /* rightarrow@2x.png */; };
 		27B81E04178F772600A06529 /* leftarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B81E00178F772600A06529 /* leftarrow@2x.png */; };
 		27B81E05178F772600A06529 /* rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B81E01178F772600A06529 /* rightarrow.png */; };
+		27B81E07178F934D00A06529 /* YMWebSnapViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B81E06178F934D00A06529 /* YMWebSnapViewController-ipad.xib */; };
 		27B8D067178B4EC9008F0A7E /* UIImage+Yammer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */; };
 		27B8D068178B4EC9008F0A7E /* YMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D053178B4EC9008F0A7E /* YMHelper.m */; };
 		27B8D069178B4EC9008F0A7E /* YMProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B8D055178B4EC9008F0A7E /* YMProperty.m */; };
@@ -140,6 +141,7 @@
 		27B81DFF178F772600A06529 /* rightarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightarrow@2x.png"; sourceTree = "<group>"; };
 		27B81E00178F772600A06529 /* leftarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftarrow@2x.png"; sourceTree = "<group>"; };
 		27B81E01178F772600A06529 /* rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightarrow.png; sourceTree = "<group>"; };
+		27B81E06178F934D00A06529 /* YMWebSnapViewController-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YMWebSnapViewController-ipad.xib"; sourceTree = "<group>"; };
 		27B8D050178B4EC9008F0A7E /* UIImage+Yammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Yammer.h"; sourceTree = "<group>"; };
 		27B8D051178B4EC9008F0A7E /* UIImage+Yammer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Yammer.m"; sourceTree = "<group>"; };
 		27B8D052178B4EC9008F0A7E /* YMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMHelper.h; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				2749044A178F4E3A00B2A50B /* YMWebSnapViewController.h */,
 				2749044B178F4E3A00B2A50B /* YMWebSnapViewController.m */,
 				27B81DFC178F6E2400A06529 /* YMWebSnapViewController-iphone.xib */,
+				27B81E06178F934D00A06529 /* YMWebSnapViewController-ipad.xib */,
 				27B8D04F178B4EC9008F0A7E /* Helper */,
 				27B8D056178B4EC9008F0A7E /* View */,
 				27B8D05F178B4EC9008F0A7E /* Network */,
@@ -556,6 +559,7 @@
 				27490449178F382B00B2A50B /* heartshape@2x.png in Resources */,
 				27EBCB15177A0FD500785B84 /* YMSketchViewController-ipad.xib in Resources */,
 				5C145E181789544B006B84A2 /* rrectshape@2x.png in Resources */,
+				27B81E07178F934D00A06529 /* YMWebSnapViewController-ipad.xib in Resources */,
 				270D33D2177E4D1A009A6353 /* Strenuous3D.ttf in Resources */,
 				5CC201D7178E3323005517A0 /* starshape.png in Resources */,
 				5CC53F7A178BC96F004FD66B /* Chunkfive.otf in Resources */,
